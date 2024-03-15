@@ -1,4 +1,0 @@
-repository "EasterJam2024@wirelesskhurram@cloud"
-  path "/"
-    br "/main"
-    co "/main"
