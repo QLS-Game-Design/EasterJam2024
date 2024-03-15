@@ -1,7 +1,11 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public List<string> candiesPlayerHas;
+    public List<string> candiesPlayerDoesntHave;
     public Vector2 playerInput;
     Rigidbody2D rb;
     public float moveSpeed;
@@ -15,6 +19,10 @@ public class NewBehaviourScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
+        candiesPlayerHas.Add("HardCandy");
+        candiesPlayerDoesntHave.Add("SoftCandy");
+        candiesPlayerDoesntHave.Add("Gum");
     }
 
     // Update is called once per frame
