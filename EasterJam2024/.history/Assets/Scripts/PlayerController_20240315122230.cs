@@ -8,7 +8,7 @@ public class NewBehaviourScript : MonoBehaviour
     float inputHorizontal;
     bool facingRight = true;
 
-    private Animator anim;
+    //private Animator anim;
 
     // Start is called before the first frame update
     void Start()

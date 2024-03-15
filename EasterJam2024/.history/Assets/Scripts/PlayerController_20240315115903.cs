@@ -8,13 +8,13 @@ public class NewBehaviourScript : MonoBehaviour
     float inputHorizontal;
     bool facingRight = true;
 
-    private Animator anim;
+    //private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -31,11 +31,11 @@ public class NewBehaviourScript : MonoBehaviour
             flip();
         }
 
-        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0) {
-            anim.SetBool("isRunning", false);
-        } else {
-            anim.SetBool("isRunning", true);
-        }
+        // if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0) {
+        //     anim.SetBool("isRunning", false);
+        // } else {
+        //     anim.SetBool("isRunning", true);
+        // }
     }
 
     void flip() {
