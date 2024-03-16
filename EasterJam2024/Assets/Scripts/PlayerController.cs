@@ -28,6 +28,7 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Input.GetAxisRaw("Horizontal"));
         playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         rb.velocity = playerInput.normalized * moveSpeed;
 
@@ -39,9 +40,9 @@ public class NewBehaviourScript : MonoBehaviour
             flip();
         }
 
-        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0) {
+        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0) {
             anim.SetBool("isRunning", false);
-        } else {
+        } else if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 || Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1){
             anim.SetBool("isRunning", true);
         }
     }

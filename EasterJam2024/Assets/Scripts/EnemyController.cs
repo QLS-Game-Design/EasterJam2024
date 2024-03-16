@@ -19,15 +19,20 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 10;
+        health = 5;
         origSpeed = 3.0f;
         speed = origSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+   void Update()
 {
+    if (health <= 0)
+    {
+        Destroy(gameObject);
+    }
+
     if (slowed || stunned) {
         time += Time.deltaTime;
     }

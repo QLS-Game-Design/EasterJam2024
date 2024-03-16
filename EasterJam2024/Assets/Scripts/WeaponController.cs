@@ -8,7 +8,7 @@ public class WeaponController : MonoBehaviour
     public Transform playerTransform;
     public float distanceFromPlayer = 0.1f;
     public float arrowSpeed = 20f;
-    public float fireCooldown = 0.2f; 
+    public float fireCooldown = 0.005f; 
 
     private Vector2 direction;
     private float fireTimer; 
@@ -24,7 +24,7 @@ public class WeaponController : MonoBehaviour
        
         fireTimer -= Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(0) && fireTimer <= 0)
+        if (Input.GetMouseButton(0) && fireTimer <= 0)
         {
             FireArrow();
             fireTimer = fireCooldown; 
