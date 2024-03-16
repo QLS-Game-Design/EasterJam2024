@@ -184,7 +184,7 @@ Transform:
   m_GameObject: {fileID: 7906312454438108375}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.58, y: -0.15, z: 0}
+  m_LocalPosition: {x: -0.024, y: -0.02, z: 0}
   m_LocalScale: {x: 0.6492, y: 0.6102, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -275,6 +275,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97a2cb2115a2ff42a040f7c97832b21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 4529551384221006729, guid: f79e7414ee4ccda4b81450d03222d564, type: 3}
-  bowTransform: {fileID: 6981533821649680249}
+  arrowPrefabs:
+  - {fileID: 4529551384221006729, guid: f79e7414ee4ccda4b81450d03222d564, type: 3}
+  - {fileID: 7829765494890698580, guid: 6cb7e9c1f413f414ba75b1ccf8a43561, type: 3}
+  - {fileID: 6438594845525667630, guid: 586cb14aed5afe64793c0c154f50d201, type: 3}
+  playerTransform: {fileID: 711789700479664424}
+  distanceFromPlayer: 0.7
   arrowSpeed: 20
+  fireCooldown: 0.005
