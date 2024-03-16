@@ -8,7 +8,7 @@ public class WeaponController : MonoBehaviour
     public Transform playerTransform;
     public float distanceFromPlayer = 0.1f;
     public float arrowSpeed = 20f;
-    public float fireCooldown = 0.005f; 
+    public float fireCooldown = 0.5f; 
 
     private Vector2 direction;
     private float fireTimer; 
@@ -24,7 +24,7 @@ public class WeaponController : MonoBehaviour
        
         fireTimer -= Time.deltaTime;
 
-        if (Input.GetMouseButton(0) && fireTimer <= 0)
+        if (Input.GetMouseButtonDown(0) && fireTimer <= 0)
         {
             FireArrow();
             fireTimer = fireCooldown; 
@@ -38,6 +38,6 @@ public class WeaponController : MonoBehaviour
         GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
         rb.velocity = direction * arrowSpeed;
-        Destroy(arrow, 7f);
+        Destroy(arrow, 3f);
     }
 }
