@@ -12,9 +12,9 @@ public class EnemyController : MonoBehaviour
     Vector2 moveDirection;
     float time;
     bool slowed;
-    float slowAmount;
+    float slowAmount = 3.0f;
 
-    float stunAmount;
+    float stunAmount = 2.0f;
     bool stunned;
     // Start is called before the first frame update
     void Start()
@@ -27,27 +27,27 @@ public class EnemyController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (slowed || stunned) {
-            time += Time.deltaTime;
-        }
-        if (time == slowAmount) {
-            time = 0;
-            slowed = false;
-            speed = origSpeed;
-        }
-        if (time == stunAmount) {
-            time = 0;
-            stunned = false;
-            speed = origSpeed;
-        }
-
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        rigidbody2D.rotation = angle + 90;
-        moveDirection = direction;
-        rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * speed;
+{
+    if (slowed || stunned) {
+        time += Time.deltaTime;
     }
+    if (slowed && time >= slowAmount) {
+        time = 0;
+        slowed = false;
+        speed = origSpeed;
+    }
+    if (stunned && time >= stunAmount) {
+        time = 0;
+        stunned = false;
+        speed = origSpeed;
+    }
+
+    Vector3 direction = (player.transform.position - transform.position).normalized;
+    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    rigidbody2D.rotation = angle + 90;
+    moveDirection = direction;
+    rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * speed;
+}
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("HardCandy")) {

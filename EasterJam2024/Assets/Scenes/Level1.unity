@@ -288,6 +288,22 @@ PrefabInstance:
       propertyPath: distanceFromPlayer
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 24946451658372326, guid: 243eaed388eb36446a59ed3c8c3f6018, type: 3}
+      propertyPath: arrowPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 24946451658372326, guid: 243eaed388eb36446a59ed3c8c3f6018, type: 3}
+      propertyPath: 'arrowPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4529551384221006729, guid: f79e7414ee4ccda4b81450d03222d564, type: 3}
+    - target: {fileID: 24946451658372326, guid: 243eaed388eb36446a59ed3c8c3f6018, type: 3}
+      propertyPath: 'arrowPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7829765494890698580, guid: 6cb7e9c1f413f414ba75b1ccf8a43561, type: 3}
+    - target: {fileID: 24946451658372326, guid: 243eaed388eb36446a59ed3c8c3f6018, type: 3}
+      propertyPath: 'arrowPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 6438594845525667630, guid: 586cb14aed5afe64793c0c154f50d201, type: 3}
     - target: {fileID: 711789700479664424, guid: 243eaed388eb36446a59ed3c8c3f6018, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

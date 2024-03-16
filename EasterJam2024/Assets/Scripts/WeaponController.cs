@@ -4,26 +4,37 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    public GameObject arrowPrefab;
+    public List<GameObject> arrowPrefabs; 
     public Transform playerTransform;
     public float distanceFromPlayer = 0.1f;
     public float arrowSpeed = 20f;
+    public float fireCooldown = 0.2f; 
 
     private Vector2 direction;
+    private float fireTimer; 
 
     void Update()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        bowTransform.rotation = Quaternion.Euler(0, 0, angle);
+        direction = (mousePosition - (Vector2)playerTransform.position).normalized;
 
-        if (Input.GetMouseButtonDown(0))
+        Vector2 newPos = (Vector2)playerTransform.position + direction * distanceFromPlayer;
+        transform.position = newPos;
+
+       
+        fireTimer -= Time.deltaTime;
+
+        if (Input.GetMouseButtonDown(0) && fireTimer <= 0)
         {
             FireArrow();
+            fireTimer = fireCooldown; 
         }
     }
 
     void FireArrow()
     {
+        GameObject arrowPrefab = arrowPrefabs[Random.Range(0, arrowPrefabs.Count)];
+
         GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
         rb.velocity = direction * arrowSpeed;
