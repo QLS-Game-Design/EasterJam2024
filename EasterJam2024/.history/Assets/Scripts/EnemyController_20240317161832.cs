@@ -55,30 +55,29 @@ public class EnemyController : MonoBehaviour
 
     Vector3 direction = (player.transform.position - transform.position).normalized;
     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-    // rigidbody2D.rotation = angle + 90;
+    rigidbody2D.rotation = angle + 90;
     moveDirection = direction;
     rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * speed;
 }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("HardCandy")) {
-            currHealth -= 5;
-            Debug.Log("Hit with Hard Candy");
-            Destroy(other.gameObject);
-        } 
-        else if (other.CompareTag("SoftCandy")) {
-            currHealth -= 4;
-            speed -= 2.0f;
-            slowed = true;
-            Debug.Log("Hit with Soft Candy");
-            Destroy(other.gameObject);
-        } 
-        else if (other.CompareTag("Gum")) {
-            currHealth -= 2;
-            speed = 0;  
-            stunned = true;
-            Debug.Log("Hit with Gum");
-            Destroy(other.gameObject);
-        }
-}
+    if (other.CompareTag("HardCandy")) {
+        currHealth -= 5;
+        Debug.Log("Hit with Hard Candy");
+        Destroy(other.gameObject);
+    } 
+    else if (other.CompareTag("SoftCandy")) {
+        currHealth -= 4;
+        speed -= 2.0f;
+        slowed = true;
+        Debug.Log("Hit with Soft Candy");
+        Destroy(other.gameObject);
+    } 
+    else if (other.CompareTag("Gum")) {
+        currHealth -= 2;
+        speed = 0;
+        stunned = true;
+        Debug.Log("Hit with Gum");
+        Destroy(other.gameObject);
+    }
 }

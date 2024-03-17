@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour
 
     Vector3 direction = (player.transform.position - transform.position).normalized;
     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-    // rigidbody2D.rotation = angle + 90;
+    rigidbody2D.rotation = angle + 90;
     moveDirection = direction;
     rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * speed;
 }
@@ -75,7 +75,7 @@ public class EnemyController : MonoBehaviour
         } 
         else if (other.CompareTag("Gum")) {
             currHealth -= 2;
-            speed = 0;  
+            speed = 0;
             stunned = true;
             Debug.Log("Hit with Gum");
             Destroy(other.gameObject);
