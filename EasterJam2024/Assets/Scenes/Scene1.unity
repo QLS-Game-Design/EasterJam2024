@@ -3408,7 +3408,7 @@ MonoBehaviour:
   - {fileID: 7829765494890698580, guid: 6cb7e9c1f413f414ba75b1ccf8a43561, type: 3}
   playerTransform: {fileID: 1060508047}
   distanceFromPlayer: 0.4
-  arrowSpeed: 10
+  arrowSpeed: 20
   fireCooldown: 1
 --- !u!212 &1841648014
 SpriteRenderer:

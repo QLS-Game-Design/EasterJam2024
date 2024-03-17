@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = 5;
+        maxHealth = 10;
         currHealth = maxHealth;
         origSpeed = 3.0f;
         speed = origSpeed;
@@ -62,13 +62,13 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Hit with Hard Candy");
             Destroy(collision.gameObject);
         } else if (collision.gameObject.CompareTag("SoftCandy")) {
-            currHealth -= 2;
+            currHealth -= 4;
             speed -= 2.0f;
             slowed = true;
             Debug.Log("Hit with Soft Candy");
             Destroy(collision.gameObject);
         } else if (collision.gameObject.CompareTag("Gum")) {
-            currHealth -= 1;
+            currHealth -= 2;
             speed = 0;
             stunned = true;
             Debug.Log("Hit with Gum");
