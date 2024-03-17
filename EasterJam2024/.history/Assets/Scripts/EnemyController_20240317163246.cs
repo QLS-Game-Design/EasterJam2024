@@ -59,8 +59,7 @@ public class EnemyController : MonoBehaviour
     // rigidbody2D.rotation = angle + 90;
     moveDirection = direction;
     rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * speed;
-   
-    float movingDirection = rigidbody2D.velocity.x;
+
     if (movingDirection > 0 && !isFacingRight)
         {
             Flip();

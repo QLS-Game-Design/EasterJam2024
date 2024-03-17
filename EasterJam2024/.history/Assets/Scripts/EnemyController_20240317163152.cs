@@ -14,7 +14,6 @@ public class EnemyController : MonoBehaviour
     float time;
     bool slowed;
     float slowAmount = 3.0f;
-    bool isFacingRight = true;
 
     float stunAmount = 2.0f;
     bool stunned;
@@ -59,25 +58,9 @@ public class EnemyController : MonoBehaviour
     // rigidbody2D.rotation = angle + 90;
     moveDirection = direction;
     rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * speed;
-   
-    float movingDirection = rigidbody2D.velocity.x;
-    if (movingDirection > 0 && !isFacingRight)
-        {
-            Flip();
-        }
-        else if (movingDirection < 0 && isFacingRight)
-        {
-            Flip();
-        }
-    }
-    void Flip()
-    {
-        // Flip the enemy by reversing its scale along the x-axis
-        isFacingRight = !isFacingRight;
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
-    }
+
+     float moveDirection = Input.GetAxisRaw("Horizontal");
+}
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("HardCandy")) {
