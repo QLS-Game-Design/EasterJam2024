@@ -9,14 +9,13 @@ public class WeaponController : MonoBehaviour
     public float distanceFromPlayer = 0.1f;
     public float arrowSpeed = 20f;
     public float fireCooldown = 0.5f; 
-    public float delay = 0.3f;
 
     private Vector2 direction;
     private float fireTimer; 
     private GameObject player;
     private PlayerController playerController;
+
     public Animator anim;
-    
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -41,21 +40,13 @@ public class WeaponController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && fireTimer <= 0)
         {
-            anim.SetTrigger("Attack");
-            StartCoroutine(AttackDelay(0.4f));
-            
+            FireArrow();
             fireTimer = fireCooldown; 
         }
         
             Vector3 currentScale = gameObject.transform.localScale;
             currentScale.x = 0.2f * playerController.orientation;
             gameObject.transform.localScale = currentScale;
-    }
-
-    IEnumerator AttackDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        FireArrow();
     }
 
     void FireArrow()
@@ -81,8 +72,6 @@ public class WeaponController : MonoBehaviour
         currentScale.x *= -1;
         gameObject.transform.localScale = currentScale;
     }
-
-
     
 }
     

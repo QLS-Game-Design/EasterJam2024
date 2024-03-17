@@ -42,7 +42,7 @@ public class WeaponController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && fireTimer <= 0)
         {
             anim.SetTrigger("Attack");
-            StartCoroutine(AttackDelay(0.4f));
+            StartCoroutine(AttackDelay(2f));
             
             fireTimer = fireCooldown; 
         }

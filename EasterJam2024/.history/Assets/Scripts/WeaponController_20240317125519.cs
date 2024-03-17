@@ -41,21 +41,14 @@ public class WeaponController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && fireTimer <= 0)
         {
-            anim.SetTrigger("Attack");
-            StartCoroutine(AttackDelay(0.4f));
-            
+            FireArrow();
             fireTimer = fireCooldown; 
+            anim.SetTrigger("Attack");
         }
         
             Vector3 currentScale = gameObject.transform.localScale;
             currentScale.x = 0.2f * playerController.orientation;
             gameObject.transform.localScale = currentScale;
-    }
-
-    IEnumerator AttackDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        FireArrow();
     }
 
     void FireArrow()

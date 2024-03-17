@@ -42,8 +42,8 @@ public class WeaponController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && fireTimer <= 0)
         {
             anim.SetTrigger("Attack");
-            StartCoroutine(AttackDelay(0.4f));
-            
+            StartCoroutine(AttackDelay(2.0f));
+            FireArrow();
             fireTimer = fireCooldown; 
         }
         
@@ -55,7 +55,6 @@ public class WeaponController : MonoBehaviour
     IEnumerator AttackDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        FireArrow();
     }
 
     void FireArrow()
