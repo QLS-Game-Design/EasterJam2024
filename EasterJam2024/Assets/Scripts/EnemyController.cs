@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float health;
+    public float currHealth;
+    public float maxHealth;
     public float speed;
     public float origSpeed;
     public GameObject player;
@@ -19,7 +20,8 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 5;
+        maxHealth = 5;
+        currHealth = maxHealth;
         origSpeed = 3.0f;
         speed = origSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -28,7 +30,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
    void Update()
 {
-    if (health <= 0)
+    if (currHealth <= 0)
     {
         Destroy(gameObject);
     }
@@ -56,15 +58,21 @@ public class EnemyController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("HardCandy")) {
-            health -= 5;
+            currHealth -= 5;
+            Debug.Log("Hit with Hard Candy");
+            Destroy(collision.gameObject);
         } else if (collision.gameObject.CompareTag("SoftCandy")) {
-            health -= 2;
+            currHealth -= 2;
             speed -= 2.0f;
             slowed = true;
+            Debug.Log("Hit with Soft Candy");
+            Destroy(collision.gameObject);
         } else if (collision.gameObject.CompareTag("Gum")) {
-            health -= 1;
+            currHealth -= 1;
             speed = 0;
             stunned = true;
+            Debug.Log("Hit with Gum");
+            Destroy(collision.gameObject);
         }
     }
 }
