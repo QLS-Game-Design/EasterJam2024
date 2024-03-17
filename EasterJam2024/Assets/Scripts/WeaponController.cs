@@ -53,6 +53,13 @@ public class WeaponController : MonoBehaviour
         GameObject arrowPrefab = arrowPrefabs[Random.Range(0, arrowPrefabs.Count)];
 
         GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0f;
+        Vector3 dir = mousePosition - arrow.transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        arrow.transform.rotation = Quaternion.Euler(0, 0, angle-90);
         Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
         rb.velocity = direction * arrowSpeed;
         
