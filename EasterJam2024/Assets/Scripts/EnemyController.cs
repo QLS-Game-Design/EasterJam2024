@@ -96,11 +96,8 @@ public class EnemyController : MonoBehaviour
     }
     void Flip()
     {
-        // Flip the enemy by reversing its scale along the x-axis
         isFacingRight = !isFacingRight;
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
+        GetComponent<SpriteRenderer>().flipX = !isFacingRight;
     }
 
     void OnTriggerEnter2D(Collider2D other) {
