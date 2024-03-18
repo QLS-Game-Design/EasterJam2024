@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 3197591651335350721}
   - component: {fileID: 8900076511821844778}
   - component: {fileID: 2269057855032401804}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,6 +448,8 @@ MonoBehaviour:
   origSpeed: 0
   player: {fileID: 0}
   rockParticles: {fileID: 0}
+  progressBar: {fileID: 0}
+  progressIncrement: 1
 --- !u!95 &2269057855032401804
 Animator:
   serializedVersion: 7
