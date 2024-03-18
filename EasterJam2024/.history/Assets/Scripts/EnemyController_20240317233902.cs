@@ -117,8 +117,5 @@ public class EnemyController : MonoBehaviour
             Vector3 spawnPosition = other.transform.position; // Get the position of the trigger enter event
             SpawnParticles(spawnPosition);
         }
-        else if (other.CompareTag("RockParticles")) {
-            currHealth -= 2;
-        }
 }
 }

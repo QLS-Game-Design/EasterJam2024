@@ -345,7 +345,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -8121046008507186591, guid: effc29acc68d84533a115042425a1a31, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -401,7 +401,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5977473, y: 0.75205153}
+  m_Size: {x: 0.5, y: 0.75205153}
   m_EdgeRadius: 0
 --- !u!50 &3197591651335350721
 Rigidbody2D:
@@ -447,6 +447,7 @@ MonoBehaviour:
   speed: 0
   origSpeed: 0
   player: {fileID: 0}
+  rockParticles: {fileID: 0}
 --- !u!95 &2269057855032401804
 Animator:
   serializedVersion: 7

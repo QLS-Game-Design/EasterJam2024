@@ -15,8 +15,6 @@ public class EnemyController : MonoBehaviour
     bool slowed;
     float slowAmount = 3.0f;
     bool isFacingRight = true;
-    
-    public ParticleSystem rockParticles; // Reference to the Particle System
 
     float stunAmount = 2.0f;
     bool stunned;
@@ -81,16 +79,6 @@ public class EnemyController : MonoBehaviour
         transform.localScale = scale;
     }
 
-     void SpawnParticles(Vector3 position)
-    {
-        // Set the position of the Particle System to the trigger enter position
-        rockParticles.transform.position = position;
-
-        // Emit particles
-        rockParticles.Emit(15);
-        Debug.Log("particles");
-    }
-
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("HardCandy")) {
             currHealth -= 5;
@@ -113,12 +101,10 @@ public class EnemyController : MonoBehaviour
         }
         else if (other.CompareTag("PopRock")) {
             currHealth -= 2;
+            speed = 0;  
+            stunned = true;
+            Debug.Log("Hit with Gum");
             Destroy(other.gameObject);
-            Vector3 spawnPosition = other.transform.position; // Get the position of the trigger enter event
-            SpawnParticles(spawnPosition);
-        }
-        else if (other.CompareTag("RockParticles")) {
-            currHealth -= 2;
         }
 }
 }

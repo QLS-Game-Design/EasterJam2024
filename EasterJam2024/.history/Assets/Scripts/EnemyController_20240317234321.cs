@@ -119,6 +119,7 @@ public class EnemyController : MonoBehaviour
         }
         else if (other.CompareTag("RockParticles")) {
             currHealth -= 2;
+            Destroy(other.gameObject);
         }
 }
 }

@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
     float slowAmount = 3.0f;
     bool isFacingRight = true;
     
-    public ParticleSystem rockParticles; // Reference to the Particle System
+    public ParticleSystem rockParticles;
 
     float stunAmount = 2.0f;
     bool stunned;
@@ -81,14 +81,9 @@ public class EnemyController : MonoBehaviour
         transform.localScale = scale;
     }
 
-     void SpawnParticles(Vector3 position)
+    void SpawnParticles(Vector2 position)
     {
-        // Set the position of the Particle System to the trigger enter position
-        rockParticles.transform.position = position;
-
-        // Emit particles
-        rockParticles.Emit(15);
-        Debug.Log("particles");
+        Instantiate(collisionParticles, position, Quaternion.identity); // Instantiate the particle system at the given position
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -114,11 +109,7 @@ public class EnemyController : MonoBehaviour
         else if (other.CompareTag("PopRock")) {
             currHealth -= 2;
             Destroy(other.gameObject);
-            Vector3 spawnPosition = other.transform.position; // Get the position of the trigger enter event
-            SpawnParticles(spawnPosition);
-        }
-        else if (other.CompareTag("RockParticles")) {
-            currHealth -= 2;
+            SpawnParticles(collision.contacts[0].point);
         }
 }
 }
