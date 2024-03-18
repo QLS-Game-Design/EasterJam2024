@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -18,14 +19,18 @@ public class EnemyController : MonoBehaviour
 
     float stunAmount = 2.0f;
     bool stunned;
+    public Slider progressBar;
+    public float progressIncrement = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
+        progressBar = GameObject.Find("ProgressBar").GetComponent<Slider>();
         maxHealth = 10;
         currHealth = maxHealth;
         origSpeed = 3.0f;
         speed = origSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
+        progressBar.maxValue = 3;
     }
 
     // Update is called once per frame
@@ -34,6 +39,7 @@ public class EnemyController : MonoBehaviour
     if (currHealth <= 0)
     {
         Destroy(gameObject);
+        IncrementProgressBar();
     }
 
     if (slowed || stunned) {
@@ -68,6 +74,24 @@ public class EnemyController : MonoBehaviour
         else if (movingDirection < 0 && isFacingRight)
         {
             Flip();
+        }
+    }
+     void UpdateProgressBar(float progress)
+    {
+        if (progressBar != null)
+        {
+            progressBar.value = progress;
+        }
+    }
+        void IncrementProgressBar()
+    {
+        if (progressBar != null)
+        {
+            progressBar.value += progressIncrement; 
+        }
+        if (progressBar.value == progressBar.maxValue)
+        {
+            Debug.Log("MAX PROGRESS REACHED!");
         }
     }
     void Flip()
