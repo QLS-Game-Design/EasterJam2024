@@ -105,7 +105,7 @@ MonoBehaviour:
   - {fileID: 4529551384221006729, guid: f79e7414ee4ccda4b81450d03222d564, type: 3}
   - {fileID: 7829765494890698580, guid: 6cb7e9c1f413f414ba75b1ccf8a43561, type: 3}
   playerTransform: {fileID: 711789700479664424}
-  distanceFromPlayer: 0.4
+  distanceFromPlayer: 0.7
   arrowSpeed: 10
   fireCooldown: 0.45
   delay: 0.48
