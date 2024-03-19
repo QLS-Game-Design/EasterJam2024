@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Pathfinding;
 
 public class EnemyController : MonoBehaviour
 {
@@ -23,6 +25,8 @@ public class EnemyController : MonoBehaviour
     bool stunned;
     public Slider progressBar;
     public float progressIncrement = 1.0f;
+    public AIPath path;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,47 +37,51 @@ public class EnemyController : MonoBehaviour
         speed = origSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
         progressBar.maxValue = 3;
+
+        path = GetComponent<AIPath>();
     }
 
     // Update is called once per frame
-   void Update()
-{
-    if (currHealth <= 0)
+    void Update()
     {
-        Destroy(gameObject);
-        IncrementProgressBar();
-    }
+        path.maxSpeed = speed;
 
-    if (slowed || stunned) {
-        time += Time.deltaTime;
-    }
-    if (slowed && time >= slowAmount) {
-        time = 0;
-        slowed = false;
-        speed = origSpeed;
-    }
-    if (stunned && time >= stunAmount) {
-        time = 0;
-        stunned = false;
-        speed = origSpeed;
-    }
+        if (currHealth <= 0)
+        {
+            Destroy(gameObject);
+            IncrementProgressBar();
+        }
 
-    if (speed < 0) {
-        speed = 0;
-    }
+        if (slowed || stunned) {
+            time += Time.deltaTime;
+        }
+        if (slowed && time >= slowAmount) {
+            time = 0;
+            slowed = false;
+            speed = origSpeed;
+        }
+        if (stunned && time >= stunAmount) {
+            time = 0;
+            stunned = false;
+            speed = origSpeed;
+        }
 
-    Vector3 direction = (player.transform.position - transform.position).normalized;
-    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-    // rigidbody2D.rotation = angle + 90;
-    moveDirection = direction;
-    rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * speed;
-   
-    float movingDirection = rigidbody2D.velocity.x;
-    if (movingDirection > 0 && !isFacingRight)
+        if (speed < 0) {
+            speed = 0;
+        }
+
+        // Vector3 direction = (player.transform.position - transform.position).normalized;
+        // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // // rigidbody2D.rotation = angle + 90;
+        // moveDirection = direction;
+        // rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * speed;
+    
+        // float movingDirection = rigidbody2D.velocity.x;
+        if (path.desiredVelocity.x >= 0.01f && isFacingRight)
         {
             Flip();
         }
-        else if (movingDirection < 0 && isFacingRight)
+        else if (path.desiredVelocity.x <= 0 && !isFacingRight)
         {
             Flip();
         }
