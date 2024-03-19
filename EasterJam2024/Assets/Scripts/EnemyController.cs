@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
     public Slider progressBar;
     public float progressIncrement = 1.0f;
     public AIPath path;
+    public GameObject upgrade;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,7 @@ public class EnemyController : MonoBehaviour
         speed = origSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
         progressBar.maxValue = 3;
-
+        upgrade.SetActive(false);
         path = GetComponent<AIPath>();
     }
 
@@ -101,6 +102,7 @@ public class EnemyController : MonoBehaviour
         }
         if (progressBar.value == progressBar.maxValue)
         {
+            upgrade.SetActive(true);
             Debug.Log("MAX PROGRESS REACHED!");
         }
     }
