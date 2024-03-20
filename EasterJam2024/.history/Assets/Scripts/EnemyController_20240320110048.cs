@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
         
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
-
+        playerController.score += 5;
     }
 
     // Update is called once per frame
@@ -63,7 +63,7 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             IncrementProgressBar();
-            player.BroadcastMessage("IncrementScore", 5);
+            playerController.score += 5;
         }
 
         if (slowed || stunned) {

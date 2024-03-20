@@ -84,7 +84,4 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Attacked");
         }
     }
-    void IncrementScore(int amt) {
-        score += amt;
-    }
 }

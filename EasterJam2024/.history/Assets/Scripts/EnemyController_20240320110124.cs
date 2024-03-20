@@ -63,7 +63,7 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             IncrementProgressBar();
-            player.BroadcastMessage("IncrementScore", 5);
+            playerController.score += 5;
         }
 
         if (slowed || stunned) {

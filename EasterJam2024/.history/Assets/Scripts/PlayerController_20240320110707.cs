@@ -85,6 +85,6 @@ public class PlayerController : MonoBehaviour
         }
     }
     void IncrementScore(int amt) {
-        score += amt;
+        sco
     }
 }

@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
     {
         progressBar = GameObject.Find("ProgressBar").GetComponent<Slider>();
         maxHealth = 10;
-        
+        playerController.score += 5;
         currHealth = maxHealth;
         origSpeed = 3.0f;
         speed = origSpeed;
@@ -51,7 +51,6 @@ public class EnemyController : MonoBehaviour
         
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
-
     }
 
     // Update is called once per frame
@@ -63,7 +62,7 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             IncrementProgressBar();
-            player.BroadcastMessage("IncrementScore", 5);
+            playerController.score += 5;
         }
 
         if (slowed || stunned) {

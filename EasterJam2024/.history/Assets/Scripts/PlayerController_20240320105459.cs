@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
         //anim = GetComponent<Animator>();
         maxHealth = 10;
         currHealth = maxHealth;
-        score = 0;
     }
 
     // Update is called once per frame
@@ -61,7 +60,7 @@ public class PlayerController : MonoBehaviour
         if (currHealth <= 0) {
             die();
         }
-        Debug.Log("score is " + score.ToString());
+
         scoreText.text = score.ToString() + " POINTS";
     }
 
@@ -83,8 +82,5 @@ public class PlayerController : MonoBehaviour
             currHealth -= 3;
             Debug.Log("Attacked");
         }
-    }
-    void IncrementScore(int amt) {
-        score += amt;
     }
 }

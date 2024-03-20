@@ -7,7 +7,7 @@ using TMPro;
 
 public class GameOverScreen : MonoBehaviour
 {
-    public TextMeshProUGUI pointsText;
+    public TextMeshPro pointsText;
     public void Setup(int score) {
         gameObject.SetActive(true);
         pointsText.text = score.ToString() + " POINTS";

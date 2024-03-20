@@ -31,8 +31,7 @@ public class EnemyController : MonoBehaviour
     public delegate void AreaDamageEvent(EnemyController enemyController);
     public static event AreaDamageEvent OnAreaDamage;
     public GameObject upgrade;
-    private PlayerController playerController;
-
+    
 
 
     // Start is called before the first frame update
@@ -40,7 +39,6 @@ public class EnemyController : MonoBehaviour
     {
         progressBar = GameObject.Find("ProgressBar").GetComponent<Slider>();
         maxHealth = 10;
-        
         currHealth = maxHealth;
         origSpeed = 3.0f;
         speed = origSpeed;
@@ -48,10 +46,6 @@ public class EnemyController : MonoBehaviour
         progressBar.maxValue = 3;
         upgrade.SetActive(false);
         path = GetComponent<AIPath>();
-        
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerController = player.GetComponent<PlayerController>();
-
     }
 
     // Update is called once per frame
@@ -63,7 +57,7 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             IncrementProgressBar();
-            player.BroadcastMessage("IncrementScore", 5);
+
         }
 
         if (slowed || stunned) {

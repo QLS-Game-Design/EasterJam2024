@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public float currHealth;
     public GameOverScreen gameOverScreen;
     public GameObject Player;
-    public TextMeshProUGUI scoreText;
+    public TextMeshPro scoreText;
 
 
 
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         if (currHealth <= 0) {
             die();
         }
-        Debug.Log("score is " + score.ToString());
+
         scoreText.text = score.ToString() + " POINTS";
     }
 
@@ -83,8 +83,5 @@ public class PlayerController : MonoBehaviour
             currHealth -= 3;
             Debug.Log("Attacked");
         }
-    }
-    void IncrementScore(int amt) {
-        score += amt;
     }
 }

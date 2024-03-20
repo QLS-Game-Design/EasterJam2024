@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using System.Data.Common;
-using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,7 +19,6 @@ public class PlayerController : MonoBehaviour
     public float currHealth;
     public GameOverScreen gameOverScreen;
     public GameObject Player;
-    public TextMeshProUGUI scoreText;
 
 
 
@@ -61,8 +58,8 @@ public class PlayerController : MonoBehaviour
         if (currHealth <= 0) {
             die();
         }
-        Debug.Log("score is " + score.ToString());
-        scoreText.text = score.ToString() + " POINTS";
+
+         pointsText.text = score.ToString() + " POINTS";
     }
 
     void die() {
@@ -83,8 +80,5 @@ public class PlayerController : MonoBehaviour
             currHealth -= 3;
             Debug.Log("Attacked");
         }
-    }
-    void IncrementScore(int amt) {
-        score += amt;
     }
 }
