@@ -162,11 +162,6 @@ public class EnemyController : MonoBehaviour
             DoAreaDamage();
             Destroy(other.gameObject);
         } 
-        else if (other.CompareTag("CandyCorn")) {
-            currHealth -= 4;
-            Debug.Log("Hit with Hard Candy");
-            Destroy(other.gameObject, 1.5f);
-        }
         else if (other.CompareTag("PRCircle")) {
             currHealth -= 2;
         }

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2306800952465253673}
   - component: {fileID: 2672691564170690402}
   m_Layer: 0
-  m_Name: HardCandy
-  m_TagString: HardCandy
+  m_Name: CandyCorn
+  m_TagString: CandyCorn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -6580272980271557069, guid: 171246efcdfe24b02a999fed3cd33ff2, type: 3}
+  m_Sprite: {fileID: 3673199385999470951, guid: 0cf98d4bf4f95469897d44db20686540, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -126,7 +126,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.375, y: 1}
+    oldSize: {x: 0.29166666, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
