@@ -451,12 +451,12 @@ MonoBehaviour:
   origSpeed: 0
   player: {fileID: 5606935848365298298, guid: 243eaed388eb36446a59ed3c8c3f6018, type: 3}
   areaDamage: 0
-  rockParticles: {fileID: 0}
+  rockParticles: {fileID: 2402008695899206715, guid: 950efb6083dfe4f2c946fc1e84122ad1, type: 3}
   spawnPosition: {x: 0, y: 0, z: 0}
   progressBar: {fileID: 0}
   progressIncrement: 1
   path: {fileID: 2665408329823704771}
-  upgrade: {fileID: 0}
+  deathParticles: {fileID: 0}
   destinationSetter: {fileID: 6903767295682575629}
 --- !u!95 &2269057855032401804
 Animator:

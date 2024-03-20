@@ -146,10 +146,10 @@ public class EnemyController : MonoBehaviour
     void SpawnParticles(Vector3 position)
     {
         // Set the position of the Particle System to the trigger enter position
-        ParticleSystem clonedParticles = Instantiate(rockParticles, transform.position, Quaternion.identity);
+        rockParticles.transform.position = position;
 
         // Emit particles
-        clonedParticles.Emit(15);
+        rockParticles.Emit(15);
         Debug.Log("particles");
     }
     private void DoAreaDamage()

@@ -32,10 +32,13 @@ public class EnemyController : MonoBehaviour
     // public GameObject upgrade;
     private PlayerController playerController;
 
+<<<<<<< HEAD
      public ParticleSystem deathParticles;
 
 
+=======
     public AIDestinationSetter destinationSetter;
+>>>>>>> d65354477c50d57a6a34c7a096bdaf4f8a4f3527
 
     // Start is called before the first frame update
     void Start()
@@ -146,10 +149,10 @@ public class EnemyController : MonoBehaviour
     void SpawnParticles(Vector3 position)
     {
         // Set the position of the Particle System to the trigger enter position
-        ParticleSystem clonedParticles = Instantiate(rockParticles, transform.position, Quaternion.identity);
+        rockParticles.transform.position = position;
 
         // Emit particles
-        clonedParticles.Emit(15);
+        rockParticles.Emit(15);
         Debug.Log("particles");
     }
     private void DoAreaDamage()
