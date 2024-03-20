@@ -25,5 +25,8 @@ public class EnemySpawner : MonoBehaviour
             Enemy.transform.position = place.transform.position;
             time = 0;
         }
+        if (spawnInterval < 1.0f) {
+            spawnInterval = 1.0f;
+        }
     }
 }

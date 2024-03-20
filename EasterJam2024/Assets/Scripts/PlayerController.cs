@@ -25,8 +25,6 @@ public class PlayerController : MonoBehaviour
     public AudioClip[] soundClips; 
     private AudioSource audioSource;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +34,15 @@ public class PlayerController : MonoBehaviour
         maxHealth = 10;
         currHealth = maxHealth;
         score = 0;
+
+        EnemyController.hardCandyDamage = 2.0f;
+        EnemyController.softCandyDamage = 1.0f;
+        EnemyController.gumDamage = 0.5f;
+        EnemyController.popRockDamage = 1.0f;
+        EnemyController.candyCornDamage = 1.5f;
+        EnemyController.prAreaDamage = 0.5f;
+        EnemyController.slowAmount = 1.0f;
+        EnemyController.stunAmount = 1.0f;
     }
 
     // Update is called once per frame

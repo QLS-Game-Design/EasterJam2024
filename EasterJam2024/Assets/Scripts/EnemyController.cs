@@ -1,9 +1,6 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
-
-
 
 public class EnemyController : MonoBehaviour
 {
@@ -12,28 +9,41 @@ public class EnemyController : MonoBehaviour
     public float speed;
     public float origSpeed;
     public GameObject player;
-    Rigidbody2D rigidbody2D;
+    // Rigidbody2D rigidbody2D;
     Vector2 moveDirection;
     float time;
     bool slowed;
-    float slowAmount = 3.0f;
+    
     bool isFacingRight = true;
     public bool areaDamage = false;
     
     public ParticleSystem rockParticles; // Reference to the Particle System
     public Vector3 spawnPosition;
-    float stunAmount = 2.0f;
+    
     bool stunned;
-    public Slider progressBar;
+    // public Slider progressBar;
     public float progressIncrement = 1.0f;
     public AIPath path;
     public delegate void AreaDamageEvent(EnemyController enemyController);
     public static event AreaDamageEvent OnAreaDamage;
     // public GameObject upgrade;
-    private PlayerController playerController;
+    // private PlayerController playerController;
+
     public ParticleSystem deathParticles;
 
+
     public AIDestinationSetter destinationSetter;
+    public EnemySpawner spawner;
+
+    // damages
+    public static float hardCandyDamage;
+    public static float softCandyDamage;
+    public static float gumDamage;
+    public static float popRockDamage;
+    public static float candyCornDamage;
+    public static float prAreaDamage;
+    public static float slowAmount;
+    public static float stunAmount;
 
     public AudioClip[] soundClips; // Array to hold multiple sound clips
     private AudioSource audioSource;
@@ -41,15 +51,14 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        progressBar = GameObject.Find("ProgressBar").GetComponent<Slider>();
+        // progressBar = GameObject.Find("ProgressBar").GetComponent<Slider>();
         maxHealth = 10;
         
         currHealth = maxHealth;
         origSpeed = 3.0f;
         speed = origSpeed;
-        rigidbody2D = GetComponent<Rigidbody2D>();
-        progressBar.maxValue = 3;
+        // rigidbody2D = GetComponent<Rigidbody2D>();
+        // progressBar.maxValue = 3;
         // upgrade.SetActive(false);
         path = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
@@ -60,9 +69,8 @@ public class EnemyController : MonoBehaviour
         if (player != null) {
             Debug.Log("yay");
         }
-        playerController = player.GetComponent<PlayerController>();
+        // playerController = player.GetComponent<PlayerController>();
         destinationSetter.target = player.transform;
-
     }
 
     // Update is called once per frame
@@ -73,7 +81,8 @@ public class EnemyController : MonoBehaviour
         if (currHealth <= 0)
         {
             Destroy(gameObject);
-            IncrementProgressBar();
+            // IncrementProgressBar();
+            spawner.spawnInterval -= 0.1f;
             player.BroadcastMessage("IncrementScore", 5);
             
             // Clone the deathParticles and set its position to the enemy's position
@@ -120,25 +129,25 @@ public class EnemyController : MonoBehaviour
         ParticleSystem clonedDeathParticles = Instantiate(deathParticles, transform.position, Quaternion.identity);
         Destroy(clonedDeathParticles,1);
     }
-    void UpdateProgressBar(float progress)
-    {
-        if (progressBar != null)
-        {
-            progressBar.value = progress;
-        }
-    }
-    void IncrementProgressBar()
-    {
-        if (progressBar != null)
-        {
-            progressBar.value += progressIncrement; 
-        }
-        if (progressBar.value == progressBar.maxValue)
-        {
-            // upgrade.SetActive(true);
-            Debug.Log("MAX PROGRESS REACHED!");
-        }
-    }
+    // void UpdateProgressBar(float progress)
+    // {
+    //     if (progressBar != null)
+    //     {
+    //         progressBar.value = progress;
+    //     }
+    // }
+    // void IncrementProgressBar()
+    // {
+    //     if (progressBar != null)
+    //     {
+    //         progressBar.value += progressIncrement; 
+    //     }
+    //     if (progressBar.value == progressBar.maxValue)
+    //     {
+    //         // upgrade.SetActive(true);
+    //         Debug.Log("MAX PROGRESS REACHED!");
+    //     }
+    // }
     void Flip()
     {
         isFacingRight = !isFacingRight;
@@ -186,15 +195,15 @@ public class EnemyController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("HardCandy")) {
             PlaySound(0);
-            currHealth -= 5;
             
+            currHealth -= hardCandyDamage;
             Debug.Log("Hit with Hard Candy");
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("SoftCandy")) {
             PlaySound(0);
-            currHealth -= 4;
             
+            currHealth -= softCandyDamage;
             speed -= 2.0f;
             slowed = true;
             Debug.Log("Hit with Soft Candy");
@@ -202,7 +211,7 @@ public class EnemyController : MonoBehaviour
         } 
         else if (other.CompareTag("Gum")) {
             PlaySound(2);
-            currHealth -= 2;
+            currHealth -= gumDamage;
             speed = 0;  
             stunned = true;
             Debug.Log("Hit with Gum");
@@ -210,20 +219,24 @@ public class EnemyController : MonoBehaviour
         }
         else if (other.CompareTag("PopRock")) {
             PlaySound(1);
-            currHealth -= 2;
             spawnPosition = other.transform.position; // Get the position of the trigger enter event
+            currHealth -= popRockDamage;
+            spawnPosition = other.transform.position; // Get the position of the trigger enter event\
+            Debug.Log("1");
             SpawnParticles(spawnPosition);
+            Debug.Log("2");
             DoAreaDamage();
+            Debug.Log("3");
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("CandyCorn")) {
             PlaySound(0);
-            currHealth -= 4;
+            currHealth -= candyCornDamage;
             Debug.Log("Hit with Hard Candy");
             Destroy(other.gameObject, 1.5f);
         }
         else if (other.CompareTag("PRCircle")) {
-            currHealth -= 2;
+            currHealth -= prAreaDamage;
         }
     }
 }
