@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
         currHealth = maxHealth;
         score = 0;
 
+        EnemyController.origSpeed = 3.0f;
+
         EnemyController.hardCandyDamage = 2.0f;
         EnemyController.softCandyDamage = 1.0f;
         EnemyController.gumDamage = 0.5f;
@@ -41,6 +43,10 @@ public class PlayerController : MonoBehaviour
         EnemyController.prAreaDamage = 0.5f;
         EnemyController.slowAmount = 1.0f;
         EnemyController.stunAmount = 1.0f;
+
+        EnemyController.level = 0;
+        EnemyController.xp = 0;
+        EnemyController.threshold = 2;
     }
 
     // Update is called once per frame
