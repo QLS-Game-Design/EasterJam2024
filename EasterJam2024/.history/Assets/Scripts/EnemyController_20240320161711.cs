@@ -153,7 +153,7 @@ public class EnemyController : MonoBehaviour
         // Emit particles
         clonedParticles.Emit(15);
 
-        Destroy(clonedParticles, 5f);
+        Destroy(p)
         Debug.Log("particles");
     }
     private void DoAreaDamage()
@@ -201,7 +201,7 @@ public class EnemyController : MonoBehaviour
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("Gum")) {
-            PlaySound(2);
+            PlaySound(0);
             currHealth -= 2;
             speed = 0;  
             stunned = true;

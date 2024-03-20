@@ -80,7 +80,21 @@ public class PlayerController : MonoBehaviour
         isFlipped = !isFlipped;
     }
 
-    
+    public void PlaySound(int index)
+    {
+        if (index >= 0 && index < soundClips.Length)
+        {
+            // Set the AudioClip to play
+            audioSource.clip = soundClips[index];
+            Debug.Log("playsound");
+            // Play the sound
+            audioSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Invalid sound index");
+        }
+    }
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Enemy")) {
             currHealth -= 3;

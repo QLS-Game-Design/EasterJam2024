@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public GameOverScreen gameOverScreen;
     public GameObject Player;
     public TextMeshProUGUI scoreText;
-    public AudioClip[] soundClips; 
+    public AudioClip[] soundClips; // Array to hold multiple sound clips
     private AudioSource audioSource;
 
 
@@ -80,7 +80,6 @@ public class PlayerController : MonoBehaviour
         isFlipped = !isFlipped;
     }
 
-    
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Enemy")) {
             currHealth -= 3;

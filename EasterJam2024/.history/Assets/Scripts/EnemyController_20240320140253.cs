@@ -152,8 +152,6 @@ public class EnemyController : MonoBehaviour
 
         // Emit particles
         clonedParticles.Emit(15);
-
-        Destroy(clonedParticles, 5f);
         Debug.Log("particles");
     }
     private void DoAreaDamage()
@@ -174,7 +172,7 @@ public class EnemyController : MonoBehaviour
         {
             // Set the AudioClip to play
             audioSource.clip = soundClips[index];
-            Debug.Log("playsound");
+
             // Play the sound
             audioSource.Play();
         }
@@ -185,24 +183,23 @@ public class EnemyController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("HardCandy")) {
-            PlaySound(0);
             currHealth -= 5;
-            
+            PlaySound(0);
             Debug.Log("Hit with Hard Candy");
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("SoftCandy")) {
-            PlaySound(0);
             currHealth -= 4;
-            
+            PlaySound(0);
             speed -= 2.0f;
             slowed = true;
             Debug.Log("Hit with Soft Candy");
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("Gum")) {
-            PlaySound(2);
+            PlaySound(0);
             currHealth -= 2;
+           
             speed = 0;  
             stunned = true;
             Debug.Log("Hit with Gum");
@@ -214,11 +211,13 @@ public class EnemyController : MonoBehaviour
             spawnPosition = other.transform.position; // Get the position of the trigger enter event
             SpawnParticles(spawnPosition);
             DoAreaDamage();
+            
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("CandyCorn")) {
             PlaySound(0);
             currHealth -= 4;
+            
             Debug.Log("Hit with Hard Candy");
             Destroy(other.gameObject, 1.5f);
         }

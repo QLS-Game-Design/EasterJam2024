@@ -72,6 +72,7 @@ public class EnemyController : MonoBehaviour
 
         if (currHealth <= 0)
         {
+            PlaySound(1);
             Destroy(gameObject);
             IncrementProgressBar();
             player.BroadcastMessage("IncrementScore", 5);
@@ -192,7 +193,7 @@ public class EnemyController : MonoBehaviour
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("SoftCandy")) {
-            PlaySound(0);
+            playerController.PlaySound(0);
             currHealth -= 4;
             
             speed -= 2.0f;
@@ -201,7 +202,7 @@ public class EnemyController : MonoBehaviour
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("Gum")) {
-            PlaySound(2);
+            playerController.PlaySound(0);
             currHealth -= 2;
             speed = 0;  
             stunned = true;
@@ -209,7 +210,7 @@ public class EnemyController : MonoBehaviour
             Destroy(other.gameObject);
         }
         else if (other.CompareTag("PopRock")) {
-            PlaySound(1);
+            playerController.PlaySound(1);
             currHealth -= 2;
             spawnPosition = other.transform.position; // Get the position of the trigger enter event
             SpawnParticles(spawnPosition);
@@ -217,7 +218,7 @@ public class EnemyController : MonoBehaviour
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("CandyCorn")) {
-            PlaySound(0);
+            playerController.PlaySound(0);
             currHealth -= 4;
             Debug.Log("Hit with Hard Candy");
             Destroy(other.gameObject, 1.5f);

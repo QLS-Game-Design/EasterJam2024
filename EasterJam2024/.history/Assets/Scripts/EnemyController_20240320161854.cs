@@ -201,7 +201,7 @@ public class EnemyController : MonoBehaviour
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("Gum")) {
-            PlaySound(2);
+            PlaySound(0);
             currHealth -= 2;
             speed = 0;  
             stunned = true;

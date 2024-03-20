@@ -72,6 +72,7 @@ public class EnemyController : MonoBehaviour
 
         if (currHealth <= 0)
         {
+            PlaySound(1);
             Destroy(gameObject);
             IncrementProgressBar();
             player.BroadcastMessage("IncrementScore", 5);
@@ -176,7 +177,7 @@ public class EnemyController : MonoBehaviour
             audioSource.clip = soundClips[index];
             Debug.Log("playsound");
             // Play the sound
-            audioSource.Play();
+            audioSource.PlayOneShot(soundClips[index], 1f);
         }
         else
         {
@@ -201,7 +202,7 @@ public class EnemyController : MonoBehaviour
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("Gum")) {
-            PlaySound(2);
+            PlaySound(0);
             currHealth -= 2;
             speed = 0;  
             stunned = true;

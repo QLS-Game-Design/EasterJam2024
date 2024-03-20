@@ -80,7 +80,6 @@ public class PlayerController : MonoBehaviour
         isFlipped = !isFlipped;
     }
 
-    
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Enemy")) {
             currHealth -= 3;
