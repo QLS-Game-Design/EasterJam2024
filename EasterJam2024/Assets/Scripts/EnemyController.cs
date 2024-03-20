@@ -29,12 +29,13 @@ public class EnemyController : MonoBehaviour
     public AIPath path;
     public delegate void AreaDamageEvent(EnemyController enemyController);
     public static event AreaDamageEvent OnAreaDamage;
-    public GameObject upgrade;
+    // public GameObject upgrade;
     private PlayerController playerController;
 
      public ParticleSystem deathParticles;
 
 
+    public AIDestinationSetter destinationSetter;
 
     // Start is called before the first frame update
     void Start()
@@ -47,11 +48,18 @@ public class EnemyController : MonoBehaviour
         speed = origSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
         progressBar.maxValue = 3;
-        upgrade.SetActive(false);
+        // upgrade.SetActive(false);
         path = GetComponent<AIPath>();
+        destinationSetter = GetComponent<AIDestinationSetter>();
+
+        Debug.Log("spawned");
         
         player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null) {
+            Debug.Log("yay");
+        }
         playerController = player.GetComponent<PlayerController>();
+        destinationSetter.target = player.transform;
 
     }
 
@@ -117,7 +125,7 @@ public class EnemyController : MonoBehaviour
             progressBar.value = progress;
         }
     }
-        void IncrementProgressBar()
+    void IncrementProgressBar()
     {
         if (progressBar != null)
         {
@@ -125,7 +133,7 @@ public class EnemyController : MonoBehaviour
         }
         if (progressBar.value == progressBar.maxValue)
         {
-            upgrade.SetActive(true);
+            // upgrade.SetActive(true);
             Debug.Log("MAX PROGRESS REACHED!");
         }
     }
