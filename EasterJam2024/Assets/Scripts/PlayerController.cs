@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public List<string> candiesPlayerHas;
-    public List<string> candiesPlayerDoesntHave;
     public Vector2 playerInput;
     Rigidbody2D rb;
     public float moveSpeed;
@@ -16,8 +14,8 @@ public class PlayerController : MonoBehaviour
     public float orientation = 1;
 
     private Animator anim;
-    
-    
+    public float maxHealth;
+    public float currHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +23,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //anim = GetComponent<Animator>();
-        candiesPlayerHas.Add("HardCandy");
-        candiesPlayerDoesntHave.Add("SoftCandy");
-        candiesPlayerDoesntHave.Add("Gum");
-        
+        maxHealth = 10;
+        currHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -61,5 +57,12 @@ public class PlayerController : MonoBehaviour
         orientation *= -1;
         facingRight = !facingRight;
         isFlipped = !isFlipped;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("Enemy")) {
+            currHealth -= 3;
+            Debug.Log("Attacked");
+        }
     }
 }
