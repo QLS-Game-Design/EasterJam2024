@@ -1,9 +1,10 @@
-
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
-
-
+using UnityEngine.SocialPlatforms.Impl;
 
 public class EnemyController : MonoBehaviour
 {
@@ -31,8 +32,6 @@ public class EnemyController : MonoBehaviour
     public static event AreaDamageEvent OnAreaDamage;
     public GameObject upgrade;
     private PlayerController playerController;
-
-     public ParticleSystem deathParticles;
 
 
 
@@ -65,9 +64,6 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
             IncrementProgressBar();
             player.BroadcastMessage("IncrementScore", 5);
-            
-            // Clone the deathParticles and set its position to the enemy's position
-            EmitDeathParticles();
         }
 
         if (slowed || stunned) {
@@ -104,13 +100,7 @@ public class EnemyController : MonoBehaviour
             Flip();
         }
     }
-
-    void EmitDeathParticles()
-    {
-        ParticleSystem clonedDeathParticles = Instantiate(deathParticles, transform.position, Quaternion.identity);
-        Destroy(clonedDeathParticles,1);
-    }
-    void UpdateProgressBar(float progress)
+     void UpdateProgressBar(float progress)
     {
         if (progressBar != null)
         {

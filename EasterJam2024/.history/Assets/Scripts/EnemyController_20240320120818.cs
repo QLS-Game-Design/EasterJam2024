@@ -67,7 +67,13 @@ public class EnemyController : MonoBehaviour
             player.BroadcastMessage("IncrementScore", 5);
             
             // Clone the deathParticles and set its position to the enemy's position
-            EmitDeathParticles();
+            ParticleSystem clonedDeathParticles = Instantiate(deathParticles, transform.position, Quaternion.identity);
+            clonedDeathParticles.Emit(10);
+
+            float particleDuration = Mathf.Max(clonedDeathParticles.main.duration, clonedDeathParticles.main.startLifetime.constant);
+        
+        // Destroy the cloned particle system after its emission duration
+         Destroy(clonedDeathParticles.gameObject, particleDuration);
         }
 
         if (slowed || stunned) {
@@ -103,12 +109,6 @@ public class EnemyController : MonoBehaviour
         {
             Flip();
         }
-    }
-
-    void EmitDeathParticles()
-    {
-        ParticleSystem clonedDeathParticles = Instantiate(deathParticles, transform.position, Quaternion.identity);
-        Destroy(clonedDeathParticles,1);
     }
     void UpdateProgressBar(float progress)
     {

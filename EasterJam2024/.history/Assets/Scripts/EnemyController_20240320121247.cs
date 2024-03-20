@@ -104,12 +104,6 @@ public class EnemyController : MonoBehaviour
             Flip();
         }
     }
-
-    void EmitDeathParticles()
-    {
-        ParticleSystem clonedDeathParticles = Instantiate(deathParticles, transform.position, Quaternion.identity);
-        Destroy(clonedDeathParticles,1);
-    }
     void UpdateProgressBar(float progress)
     {
         if (progressBar != null)

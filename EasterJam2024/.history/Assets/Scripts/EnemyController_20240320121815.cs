@@ -108,7 +108,7 @@ public class EnemyController : MonoBehaviour
     void EmitDeathParticles()
     {
         ParticleSystem clonedDeathParticles = Instantiate(deathParticles, transform.position, Quaternion.identity);
-        Destroy(clonedDeathParticles,1);
+        
     }
     void UpdateProgressBar(float progress)
     {

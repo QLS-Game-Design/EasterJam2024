@@ -3,8 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
 
-
-
 public class EnemyController : MonoBehaviour
 {
     public float currHealth;
@@ -19,11 +17,8 @@ public class EnemyController : MonoBehaviour
     float slowAmount = 3.0f;
     bool isFacingRight = true;
     public bool areaDamage = false;
-    
-    public ParticleSystem rockParticles; // Reference to the Particle System
-    public Vector3 spawnPosition;
-    float stunAmount = 2.0f;
-    bool stunned;
+
+    public ParticleSystem deathParticles; // Reference to the Particle System
     public Slider progressBar;
     public float progressIncrement = 1.0f;
     public AIPath path;
@@ -32,16 +27,11 @@ public class EnemyController : MonoBehaviour
     public GameObject upgrade;
     private PlayerController playerController;
 
-     public ParticleSystem deathParticles;
-
-
-
     // Start is called before the first frame update
     void Start()
     {
         progressBar = GameObject.Find("ProgressBar").GetComponent<Slider>();
         maxHealth = 10;
-        
         currHealth = maxHealth;
         origSpeed = 3.0f;
         speed = origSpeed;
@@ -49,10 +39,8 @@ public class EnemyController : MonoBehaviour
         progressBar.maxValue = 3;
         upgrade.SetActive(false);
         path = GetComponent<AIPath>();
-        
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
-
     }
 
     // Update is called once per frame
@@ -65,50 +53,41 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
             IncrementProgressBar();
             player.BroadcastMessage("IncrementScore", 5);
-            
-            // Clone the deathParticles and set its position to the enemy's position
             EmitDeathParticles();
         }
 
-        if (slowed || stunned) {
+        if (slowed)
+        {
             time += Time.deltaTime;
-        }
-        if (slowed && time >= slowAmount) {
-            time = 0;
-            slowed = false;
-            speed = origSpeed;
-        }
-        if (stunned && time >= stunAmount) {
-            time = 0;
-            stunned = false;
-            speed = origSpeed;
+            if (time >= slowAmount)
+            {
+                slowed = false;
+                speed = origSpeed;
+                time = 0;
+            }
         }
 
-        if (speed < 0) {
-            speed = 0;
-        }
+        // Flip logic...
 
-        // Vector3 direction = (player.transform.position - transform.position).normalized;
-        // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        // // rigidbody2D.rotation = angle + 90;
-        // moveDirection = direction;
-        // rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * speed;
-    
-        // float movingDirection = rigidbody2D.velocity.x;
-        if (path.desiredVelocity.x < 0f && isFacingRight)
+        // Remaining code...
+    }
+
+    void IncrementProgressBar()
+    {
+        if (progressBar != null)
         {
-            Flip();
+            progressBar.value += progressIncrement;
         }
-        else if (path.desiredVelocity.x > 0 && !isFacingRight)
+        if (progressBar.value == progressBar.maxValue)
         {
-            Flip();
+            upgrade.SetActive(true);
+            Debug.Log("MAX PROGRESS REACHED!");
         }
     }
 
     void EmitDeathParticles()
     {
         ParticleSystem clonedDeathParticles = Instantiate(deathParticles, transform.position, Quaternion.identity);
-        Destroy(clonedDeathParticles,1);
     }
     void UpdateProgressBar(float progress)
     {
