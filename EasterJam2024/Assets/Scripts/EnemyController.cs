@@ -1,9 +1,6 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
-
-
 
 public class EnemyController : MonoBehaviour
 {
@@ -12,7 +9,7 @@ public class EnemyController : MonoBehaviour
     public float speed;
     public float origSpeed;
     public GameObject player;
-    Rigidbody2D rigidbody2D;
+    // Rigidbody2D rigidbody2D;
     Vector2 moveDirection;
     float time;
     bool slowed;
@@ -24,30 +21,31 @@ public class EnemyController : MonoBehaviour
     public Vector3 spawnPosition;
     float stunAmount = 2.0f;
     bool stunned;
-    public Slider progressBar;
+    // public Slider progressBar;
     public float progressIncrement = 1.0f;
     public AIPath path;
     public delegate void AreaDamageEvent(EnemyController enemyController);
     public static event AreaDamageEvent OnAreaDamage;
     // public GameObject upgrade;
-    private PlayerController playerController;
+    // private PlayerController playerController;
 
-     public ParticleSystem deathParticles;
+    public ParticleSystem deathParticles;
 
 
     public AIDestinationSetter destinationSetter;
+    public EnemySpawner spawner;
 
     // Start is called before the first frame update
     void Start()
     {
-        progressBar = GameObject.Find("ProgressBar").GetComponent<Slider>();
+        // progressBar = GameObject.Find("ProgressBar").GetComponent<Slider>();
         maxHealth = 10;
         
         currHealth = maxHealth;
         origSpeed = 3.0f;
         speed = origSpeed;
-        rigidbody2D = GetComponent<Rigidbody2D>();
-        progressBar.maxValue = 3;
+        // rigidbody2D = GetComponent<Rigidbody2D>();
+        // progressBar.maxValue = 3;
         // upgrade.SetActive(false);
         path = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
@@ -58,7 +56,7 @@ public class EnemyController : MonoBehaviour
         if (player != null) {
             Debug.Log("yay");
         }
-        playerController = player.GetComponent<PlayerController>();
+        // playerController = player.GetComponent<PlayerController>();
         destinationSetter.target = player.transform;
 
     }
@@ -71,7 +69,8 @@ public class EnemyController : MonoBehaviour
         if (currHealth <= 0)
         {
             Destroy(gameObject);
-            IncrementProgressBar();
+            // IncrementProgressBar();
+            spawner.spawnInterval -= 0.1f;
             player.BroadcastMessage("IncrementScore", 5);
             
             // Clone the deathParticles and set its position to the enemy's position
@@ -118,25 +117,25 @@ public class EnemyController : MonoBehaviour
         ParticleSystem clonedDeathParticles = Instantiate(deathParticles, transform.position, Quaternion.identity);
         Destroy(clonedDeathParticles,1);
     }
-    void UpdateProgressBar(float progress)
-    {
-        if (progressBar != null)
-        {
-            progressBar.value = progress;
-        }
-    }
-    void IncrementProgressBar()
-    {
-        if (progressBar != null)
-        {
-            progressBar.value += progressIncrement; 
-        }
-        if (progressBar.value == progressBar.maxValue)
-        {
-            // upgrade.SetActive(true);
-            Debug.Log("MAX PROGRESS REACHED!");
-        }
-    }
+    // void UpdateProgressBar(float progress)
+    // {
+    //     if (progressBar != null)
+    //     {
+    //         progressBar.value = progress;
+    //     }
+    // }
+    // void IncrementProgressBar()
+    // {
+    //     if (progressBar != null)
+    //     {
+    //         progressBar.value += progressIncrement; 
+    //     }
+    //     if (progressBar.value == progressBar.maxValue)
+    //     {
+    //         // upgrade.SetActive(true);
+    //         Debug.Log("MAX PROGRESS REACHED!");
+    //     }
+    // }
     void Flip()
     {
         isFacingRight = !isFacingRight;
@@ -185,9 +184,12 @@ public class EnemyController : MonoBehaviour
         }
         else if (other.CompareTag("PopRock")) {
             currHealth -= 2;
-            spawnPosition = other.transform.position; // Get the position of the trigger enter event
+            spawnPosition = other.transform.position; // Get the position of the trigger enter event\
+            Debug.Log("1");
             SpawnParticles(spawnPosition);
+            Debug.Log("2");
             DoAreaDamage();
+            Debug.Log("3");
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("CandyCorn")) {

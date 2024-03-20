@@ -453,11 +453,11 @@ MonoBehaviour:
   areaDamage: 0
   rockParticles: {fileID: 2402008695899206715, guid: 950efb6083dfe4f2c946fc1e84122ad1, type: 3}
   spawnPosition: {x: 0, y: 0, z: 0}
-  progressBar: {fileID: 0}
   progressIncrement: 1
   path: {fileID: 2665408329823704771}
   deathParticles: {fileID: 0}
   destinationSetter: {fileID: 6903767295682575629}
+  spawner: {fileID: 2948536575589238361, guid: 0f5ef933933c36a42aecbcb4f5b03130, type: 3}
 --- !u!95 &2269057855032401804
 Animator:
   serializedVersion: 7
