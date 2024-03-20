@@ -13,13 +13,13 @@ public class EnemyController : MonoBehaviour
     Vector2 moveDirection;
     float time;
     bool slowed;
-    float slowAmount = 3.0f;
+    
     bool isFacingRight = true;
     public bool areaDamage = false;
     
     public ParticleSystem rockParticles; // Reference to the Particle System
     public Vector3 spawnPosition;
-    float stunAmount = 2.0f;
+    
     bool stunned;
     // public Slider progressBar;
     public float progressIncrement = 1.0f;
@@ -34,6 +34,16 @@ public class EnemyController : MonoBehaviour
 
     public AIDestinationSetter destinationSetter;
     public EnemySpawner spawner;
+
+    // damages
+    public static float hardCandyDamage;
+    public static float softCandyDamage;
+    public static float gumDamage;
+    public static float popRockDamage;
+    public static float candyCornDamage;
+    public static float prAreaDamage;
+    public static float slowAmount;
+    public static float stunAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +68,6 @@ public class EnemyController : MonoBehaviour
         }
         // playerController = player.GetComponent<PlayerController>();
         destinationSetter.target = player.transform;
-
     }
 
     // Update is called once per frame
@@ -164,26 +173,26 @@ public class EnemyController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("HardCandy")) {
-            currHealth -= 5;
+            currHealth -= hardCandyDamage;
             Debug.Log("Hit with Hard Candy");
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("SoftCandy")) {
-            currHealth -= 4;
+            currHealth -= softCandyDamage;
             speed -= 2.0f;
             slowed = true;
             Debug.Log("Hit with Soft Candy");
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("Gum")) {
-            currHealth -= 2;
+            currHealth -= gumDamage;
             speed = 0;  
             stunned = true;
             Debug.Log("Hit with Gum");
             Destroy(other.gameObject);
         }
         else if (other.CompareTag("PopRock")) {
-            currHealth -= 2;
+            currHealth -= popRockDamage;
             spawnPosition = other.transform.position; // Get the position of the trigger enter event\
             Debug.Log("1");
             SpawnParticles(spawnPosition);
@@ -193,12 +202,12 @@ public class EnemyController : MonoBehaviour
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("CandyCorn")) {
-            currHealth -= 4;
+            currHealth -= candyCornDamage;
             Debug.Log("Hit with Hard Candy");
             Destroy(other.gameObject, 1.5f);
         }
         else if (other.CompareTag("PRCircle")) {
-            currHealth -= 2;
+            currHealth -= prAreaDamage;
         }
     }
 }
