@@ -1,15 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
-using NUnit.Framework;
-using System.Xml;
 
 public class EnemyController : MonoBehaviour
 {
     public float currHealth;
     public float maxHealth;
     public float speed;
-    public static float origSpeed = 3.0f;
+    public float origSpeed;
     public GameObject player;
     // Rigidbody2D rigidbody2D;
     Vector2 moveDirection;
@@ -36,7 +34,6 @@ public class EnemyController : MonoBehaviour
 
     public AIDestinationSetter destinationSetter;
     public EnemySpawner spawner;
-    public UpgradeOn upgrade;
 
     // damages
     public static float hardCandyDamage;
@@ -48,9 +45,6 @@ public class EnemyController : MonoBehaviour
     public static float slowAmount;
     public static float stunAmount;
 
-    public static int level;
-    public static int xp;
-    public static int threshold;
     public AudioClip[] soundClips; // Array to hold multiple sound clips
     private AudioSource audioSource;
 
@@ -61,6 +55,7 @@ public class EnemyController : MonoBehaviour
         maxHealth = 10;
         
         currHealth = maxHealth;
+        origSpeed = 3.0f;
         speed = origSpeed;
         // rigidbody2D = GetComponent<Rigidbody2D>();
         // progressBar.maxValue = 3;
@@ -75,30 +70,21 @@ public class EnemyController : MonoBehaviour
             Debug.Log("yay");
         }
         // playerController = player.GetComponent<PlayerController>();
-        if (player.transform != null) {
-            destinationSetter.target = player.transform;
-        }
+        destinationSetter.target = player.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
         path.maxSpeed = speed;
-        if (UpgradeOn.stop) {
-            speed = 0;
-        }
-        if (UpgradeOn.unstop) {
-            speed = origSpeed;
-        }
 
         if (currHealth <= 0)
         {
             Destroy(gameObject);
             // IncrementProgressBar();
-            spawner.spawnInterval -= 0.05f;
+            spawner.spawnInterval -= 0.1f;
             player.BroadcastMessage("IncrementScore", 5);
-            xp++;
-            origSpeed = 3.0f + level*0.05f;
+            
             // Clone the deathParticles and set its position to the enemy's position
             EmitDeathParticles();
         }
@@ -135,11 +121,6 @@ public class EnemyController : MonoBehaviour
         else if (path.desiredVelocity.x > 0 && !isFacingRight)
         {
             Flip();
-        }
-
-        if (xp >= threshold) {
-            level++;
-            upgrade.Upgrade();
         }
     }
 

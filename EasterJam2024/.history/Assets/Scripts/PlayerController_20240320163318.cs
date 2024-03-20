@@ -22,8 +22,10 @@ public class PlayerController : MonoBehaviour
     public GameOverScreen gameOverScreen;
     public GameObject Player;
     public TextMeshProUGUI scoreText;
-    public AudioClip[] soundClips; 
+    public AudioClip[] soundClips; // Array to hold multiple sound clips
     private AudioSource audioSource;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,21 +36,6 @@ public class PlayerController : MonoBehaviour
         maxHealth = 10;
         currHealth = maxHealth;
         score = 0;
-
-        EnemyController.origSpeed = 3.0f;
-
-        EnemyController.hardCandyDamage = 2.0f;
-        EnemyController.softCandyDamage = 1.0f;
-        EnemyController.gumDamage = 0.5f;
-        EnemyController.popRockDamage = 1.0f;
-        EnemyController.candyCornDamage = 1.5f;
-        EnemyController.prAreaDamage = 0.5f;
-        EnemyController.slowAmount = 1.0f;
-        EnemyController.stunAmount = 1.0f;
-
-        EnemyController.level = 0;
-        EnemyController.xp = 0;
-        EnemyController.threshold = 2;
     }
 
     // Update is called once per frame
@@ -93,7 +80,6 @@ public class PlayerController : MonoBehaviour
         isFlipped = !isFlipped;
     }
 
-    
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Enemy")) {
             currHealth -= 3;

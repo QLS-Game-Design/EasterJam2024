@@ -7,6 +7,15 @@
 //     PlayerController player;
 
 //     public TextMeshProUGUI text;
+// public class UpgradeController : MonoBehaviour
+// {
+//     PlayerController player;
+    
+//     // Start is called before the first frame update
+//     void Start()
+//     {
+        
+//     }
 
 //     public List<string> selections;
 //     public List<int> levels;
@@ -136,5 +145,7 @@
 //         player.maxHealth += 5;
 //         player.currHealth = player.maxHealth;
 //         UpgradeOn.unstop = true;
+//     }
+// }
 //     }
 // }
