@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
     float time;
     bool slowed;
     float slowAmount = 3.0f;
-    bool isFacingRight = true;
+    bool isFacingRight = false;
     public bool areaDamage = false;
     
     public ParticleSystem rockParticles; // Reference to the Particle System
@@ -81,11 +81,11 @@ public class EnemyController : MonoBehaviour
         // rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * speed;
     
         // float movingDirection = rigidbody2D.velocity.x;
-        if (path.desiredVelocity.x < 0f && isFacingRight)
+        if (path.desiredVelocity.x >= 0.01f && isFacingRight)
         {
             Flip();
         }
-        else if (path.desiredVelocity.x > 0 && !isFacingRight)
+        else if (path.desiredVelocity.x <= 0 && !isFacingRight)
         {
             Flip();
         }
