@@ -12,12 +12,11 @@ public class PlayerController : MonoBehaviour
     public bool facingRight = true;
     public bool isFlipped = true;
     public float orientation = 1;
-    public float score;
+
     private Animator anim;
     public float maxHealth;
     public float currHealth;
     public GameOverScreen gameOverScreen;
-    public GameObject Player;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +26,6 @@ public class PlayerController : MonoBehaviour
         //anim = GetComponent<Animator>();
         maxHealth = 10;
         currHealth = maxHealth;
-        score = 0;
     }
 
     // Update is called once per frame
@@ -58,9 +56,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void die() {
-        Destroy(Player);
-        gameOverScreen.Setup((int)score);
-        
+        gameOverScreen.Setup(1);
     }
     void flip() {
         Vector3 currentScale = gameObject.transform.localScale;

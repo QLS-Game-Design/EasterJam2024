@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     public float maxHealth;
     public float currHealth;
     public GameOverScreen gameOverScreen;
-    public GameObject Player;
 
     // Start is called before the first frame update
     void Start()
@@ -58,9 +57,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void die() {
-        Destroy(Player);
-        gameOverScreen.Setup((int)score);
-        
+        gameOverScreen.Setup(score);
     }
     void flip() {
         Vector3 currentScale = gameObject.transform.localScale;

@@ -58,9 +58,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void die() {
-        Destroy(Player);
         gameOverScreen.Setup((int)score);
-        
+        Destroy(Player);
     }
     void flip() {
         Vector3 currentScale = gameObject.transform.localScale;
