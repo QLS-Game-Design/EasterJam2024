@@ -10,6 +10,8 @@ TagManager:
   - CandyCorn
   - PopRock
   - RockParticles
+  - PRCircle
+  - Enemy
   layers:
   - Default
   - TransparentFX

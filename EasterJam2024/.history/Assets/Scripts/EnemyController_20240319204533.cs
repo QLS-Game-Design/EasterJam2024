@@ -27,8 +27,6 @@ public class EnemyController : MonoBehaviour
     public Slider progressBar;
     public float progressIncrement = 1.0f;
     public AIPath path;
-    public delegate void AreaDamageEvent(EnemyController enemyController);
-    public static event AreaDamageEvent OnAreaDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -155,13 +153,15 @@ public class EnemyController : MonoBehaviour
         }
         else if (other.CompareTag("PopRock")) {
             currHealth -= 2;
+            Destroy(other.gameObject);
             spawnPosition = other.transform.position; // Get the position of the trigger enter event
             SpawnParticles(spawnPosition);
-            DoAreaDamage();
-            Destroy(other.gameObject);
+            areaDamage = true;
         }
         else if (other.CompareTag("PRCircle")) {
             currHealth -= 2;
         }
-    }
+
+
+}
 }

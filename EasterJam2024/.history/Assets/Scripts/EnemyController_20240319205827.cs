@@ -155,6 +155,7 @@ public class EnemyController : MonoBehaviour
         }
         else if (other.CompareTag("PopRock")) {
             currHealth -= 2;
+            
             spawnPosition = other.transform.position; // Get the position of the trigger enter event
             SpawnParticles(spawnPosition);
             DoAreaDamage();

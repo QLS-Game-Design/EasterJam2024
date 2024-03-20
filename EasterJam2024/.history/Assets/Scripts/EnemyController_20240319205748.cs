@@ -155,10 +155,10 @@ public class EnemyController : MonoBehaviour
         }
         else if (other.CompareTag("PopRock")) {
             currHealth -= 2;
+            Destroy(other.gameObject);
             spawnPosition = other.transform.position; // Get the position of the trigger enter event
             SpawnParticles(spawnPosition);
             DoAreaDamage();
-            Destroy(other.gameObject);
         }
         else if (other.CompareTag("PRCircle")) {
             currHealth -= 2;

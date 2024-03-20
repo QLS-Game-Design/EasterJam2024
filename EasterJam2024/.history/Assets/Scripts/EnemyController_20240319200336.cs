@@ -21,14 +21,12 @@ public class EnemyController : MonoBehaviour
     public bool areaDamage = false;
     
     public ParticleSystem rockParticles; // Reference to the Particle System
-    public Vector3 spawnPosition;
+
     float stunAmount = 2.0f;
     bool stunned;
     public Slider progressBar;
     public float progressIncrement = 1.0f;
     public AIPath path;
-    public delegate void AreaDamageEvent(EnemyController enemyController);
-    public static event AreaDamageEvent OnAreaDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -122,17 +120,7 @@ public class EnemyController : MonoBehaviour
         rockParticles.Emit(15);
         Debug.Log("particles");
     }
-    private void DoAreaDamage()
-    {
-        areaDamage = true;
-        // Other logic...
-        
-        // Raise the event
-        if (OnAreaDamage != null)
-        {
-            OnAreaDamage(this);
-        }
-    }
+
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("HardCandy")) {
             currHealth -= 5;
@@ -155,13 +143,13 @@ public class EnemyController : MonoBehaviour
         }
         else if (other.CompareTag("PopRock")) {
             currHealth -= 2;
-            spawnPosition = other.transform.position; // Get the position of the trigger enter event
-            SpawnParticles(spawnPosition);
-            DoAreaDamage();
+            areaDamage = true;
             Destroy(other.gameObject);
+            Vector3 spawnPosition = other.transform.position; // Get the position of the trigger enter event
+            SpawnParticles(spawnPosition);
         }
-        else if (other.CompareTag("PRCircle")) {
+        else if (other.CompareTag("PRCircle") && ) {
             currHealth -= 2;
         }
-    }
+}
 }
