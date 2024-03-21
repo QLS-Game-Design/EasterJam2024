@@ -38,28 +38,28 @@ public class Upgrades : MonoBehaviour
     }
 
     public void DamageUpgrade() {
-        EnemyController.hardCandyDamage += 0.1f;
-        EnemyController.softCandyDamage += 0.1f;
-        EnemyController.gumDamage += 0.1f;
-        EnemyController.popRockDamage += 0.1f;
-        EnemyController.candyCornDamage += 0.1f;
+        EnemyController.hardCandyDamage += 1.0f;
+        EnemyController.softCandyDamage += 0.5f;
+        EnemyController.gumDamage += 0.5f;
+        EnemyController.popRockDamage += 1.0f;
+        EnemyController.candyCornDamage += 1.0f;
         Debug.Log("Damage Upgrade");
         Finish();
     }
 
     public void ArrowsUpgrade() {
-        // EnemyController.hardCandyDamage += 0.1f;
-        // EnemyController.candyCornDamage += 0.1f;
-        EnemyController.prAreaDamage += 0.1f;
-        EnemyController.slowAmount += 0.1f;
-        EnemyController.stunAmount += 0.1f;
+        EnemyController.hardCandyDamage += 0.5f;
+        EnemyController.candyCornDamage += 0.5f;
+        EnemyController.prAreaDamage += 1.0f;
+        EnemyController.slowAmount += 0.5f;
+        EnemyController.stunAmount += 0.5f;
         Debug.Log("Arrows Upgrade");
         Finish();
     }
 
     public void HealthUpgrade() {
-        //player.maxHealth += 3;
-        player.currHealth += 3;
+        player.maxHealth += 5;
+        player.currHealth = player.maxHealth;
         Debug.Log("Health Upgrade");
         Finish();
     }

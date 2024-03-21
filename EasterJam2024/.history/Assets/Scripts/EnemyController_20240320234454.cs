@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     public float currHealth;
     public float maxHealth;
     public float speed;
-    public static float origSpeed = 6.5f;
+    public static float origSpeed = .0f;
     public GameObject player;
     // Rigidbody2D rigidbody2D;
     Vector2 moveDirection;
@@ -99,7 +99,7 @@ public class EnemyController : MonoBehaviour
             if (playerController.isDead == false) {
             Vector3 position = transform.position;
             SpawnParticles(position, deathParticles, 10f);
-            origSpeed += 0.05f;
+            spawner.spawnInterval -= 0.1f;
             player.BroadcastMessage("IncrementScore", 5);
             xp++;
             Debug.Log(xp);

@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         currHealth = maxHealth;
         score = 0;
 
-        EnemyController.origSpeed = 6.5f;
+        EnemyController.origSpeed = 8.0f;
 
         EnemyController.hardCandyDamage = 2.0f;
         EnemyController.softCandyDamage = 1.0f;

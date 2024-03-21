@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         currHealth = maxHealth;
         score = 0;
 
-        EnemyController.origSpeed = 6.5f;
+        EnemyController.origSpeed = 3.0f;
 
         EnemyController.hardCandyDamage = 2.0f;
         EnemyController.softCandyDamage = 1.0f;
@@ -60,12 +60,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Upgrades.stop) {
-            FreezePosition(true, true);
-        }
-        if (Upgrades.unstopped) {
-            FreezePosition(false, false);
-        }
         // Debug.Log(Input.GetAxisRaw("Horizontal"));
         if (!Upgrades.stop) {
             playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -131,19 +125,5 @@ public class PlayerController : MonoBehaviour
             nextDamageTime = Time.time + damageCooldown;
         }
     }
-
-    public void FreezePosition(bool freezeX, bool freezeY)
-{
-    rb.constraints = RigidbodyConstraints2D.None; // Remove all constraints first
-    rb.constraints |= RigidbodyConstraints2D.FreezeRotation; // Ensure rotation is not affected
-
-    // Freeze position along specified axes
-    if (freezeX && freezeY)
-        rb.constraints |= RigidbodyConstraints2D.FreezePosition;
-    else if (freezeX)
-        rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
-    else if (freezeY)
-        rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
-}
     
 }

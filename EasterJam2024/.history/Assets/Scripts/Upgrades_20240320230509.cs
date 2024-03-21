@@ -58,8 +58,8 @@ public class Upgrades : MonoBehaviour
     }
 
     public void HealthUpgrade() {
-        //player.maxHealth += 3;
-        player.currHealth += 3;
+        player.maxHealth += 5;
+        player.currHealth = player.maxHealth;
         Debug.Log("Health Upgrade");
         Finish();
     }

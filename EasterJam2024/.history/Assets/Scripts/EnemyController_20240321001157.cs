@@ -99,7 +99,8 @@ public class EnemyController : MonoBehaviour
             if (playerController.isDead == false) {
             Vector3 position = transform.position;
             SpawnParticles(position, deathParticles, 10f);
-            origSpeed += 0.05f;
+            spawner.spawnInterval -= 0.1f;
+            origSpeed +=
             player.BroadcastMessage("IncrementScore", 5);
             xp++;
             Debug.Log(xp);

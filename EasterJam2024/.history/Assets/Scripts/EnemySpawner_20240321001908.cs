@@ -6,16 +6,13 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject[] children;
     public float spawnInterval;
-    public float initialSpawnInterval = 1.5f;
-    public float minSpawnInterval = 0.5f;
-    public float decreaseRate = 0.1f;
     float time;
     public GameObject enemy;
     // Start is called before the first frame update
     void Start()
     {
         children = GetComponentsInChildren<GameObject>();
-        spawnInterval = 1.5f;
+        spawnInterval = 3.0f;
     }
 
     // Update is called once per frame
@@ -33,12 +30,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    IEnumerator DecreaseSpawnInterval()
-    {
-        while (spawnInterval > 0.5f)
-        {
-            yield return new WaitForSeconds(1f); // Wait for 1 second before decreasing the spawn interval
-            spawnInterval = Mathf.Max(spawnInterval - decreaseRate, minSpawnInterval);
-        }
+    public void decreaseInterval() {
+        spawnInterval -= 2.5f;
     }
 }

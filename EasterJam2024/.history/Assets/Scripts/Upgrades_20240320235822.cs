@@ -10,10 +10,19 @@ public class Upgrades : MonoBehaviour
     float time;
     // Start is called before the first frame update
     void Start()
+{
+    stop = false;
+    unstopped = false;
+
+    // Disable all buttons initially
+    for (int i = 0; i < transform.childCount; i++)
     {
-        stop = false;
-        unstopped = false;
+        transform.GetChild(i).GetComponent<Button>().interactable = false;
     }
+
+    // Enable buttons after 0.5 seconds
+    StartCoroutine(EnableButtonsAfterDelay(0.5f));
+}
 
     // Update is called once per frame
     void Update()
@@ -58,8 +67,8 @@ public class Upgrades : MonoBehaviour
     }
 
     public void HealthUpgrade() {
-        //player.maxHealth += 3;
-        player.currHealth += 3;
+        player.maxHealth += 3;
+        player.currHealth += 6;
         Debug.Log("Health Upgrade");
         Finish();
     }

@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         currHealth = maxHealth;
         score = 0;
 
-        EnemyController.origSpeed = 6.5f;
+        EnemyController.origSpeed = 3.0f;
 
         EnemyController.hardCandyDamage = 2.0f;
         EnemyController.softCandyDamage = 1.0f;
@@ -61,10 +61,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (Upgrades.stop) {
-            FreezePosition(true, true);
+            speed = 0;
         }
         if (Upgrades.unstopped) {
-            FreezePosition(false, false);
+            speed = origSpeed;
         }
         // Debug.Log(Input.GetAxisRaw("Horizontal"));
         if (!Upgrades.stop) {
@@ -133,17 +133,18 @@ public class PlayerController : MonoBehaviour
     }
 
     public void FreezePosition(bool freezeX, bool freezeY)
-{
-    rb.constraints = RigidbodyConstraints2D.None; // Remove all constraints first
-    rb.constraints |= RigidbodyConstraints2D.FreezeRotation; // Ensure rotation is not affected
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation; // Ensure rotation is not affected
 
-    // Freeze position along specified axes
-    if (freezeX && freezeY)
-        rb.constraints |= RigidbodyConstraints2D.FreezePosition;
-    else if (freezeX)
-        rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
-    else if (freezeY)
-        rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
-}
+        // Freeze position along specified axes
+        if (freezeX && freezeY)
+            rb.constraints |= RigidbodyConstraints2D.FreezePosition;
+        else if (freezeX)
+            rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
+        else if (freezeY)
+            rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
+        else
+            rb.constraints = RigidbodyConstraints2D.None; // Unfreeze if no axes specified
+    }
     
 }
