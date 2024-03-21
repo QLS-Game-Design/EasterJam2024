@@ -1600,7 +1600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsText: {fileID: 466678986}
-  pointsGainedTop: {fileID: 0}
+  pointsGainedTop: {fileID: 725217530}
 --- !u!1001 &570594121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3590,7 +3590,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 035163cc33a1e4c9898de067d6448d50, type: 3}
   m_Resource: {fileID: 8300000, guid: 035163cc33a1e4c9898de067d6448d50, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
