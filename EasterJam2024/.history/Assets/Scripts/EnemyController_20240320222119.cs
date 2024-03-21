@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     public float currHealth;
     public float maxHealth;
     public float speed;
-    public static float origSpeed = 5.0f;
+    public static float origSpeed = 3.0f;
     public GameObject player;
     // Rigidbody2D rigidbody2D;
     Vector2 moveDirection;
@@ -48,6 +48,7 @@ public class EnemyController : MonoBehaviour
     public static float slowAmount;
     public static float stunAmount;
 
+    public static int level;
     public static int xp;
     public static int threshold;
     public AudioClip[] soundClips; // Array to hold multiple sound clips
@@ -86,12 +87,6 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Upgrades.stop) {
-            speed = 0;
-        }
-        if (Upgrades.unstopped) {
-            speed = origSpeed;
-        }
         path.maxSpeed = speed;
 
         if (currHealth <= 0)
@@ -101,7 +96,6 @@ public class EnemyController : MonoBehaviour
             spawner.spawnInterval -= 0.05f;
             player.BroadcastMessage("IncrementScore", 5);
             xp++;
-            Debug.Log(xp);
             playerController.enemyDie(); 
             Destroy(gameObject);
             // IncrementProgressBar();
@@ -133,6 +127,10 @@ public class EnemyController : MonoBehaviour
         else if (path.desiredVelocity.x > 0 && !isFacingRight)
         {
             Flip();
+        }
+
+        if (xp >= threshold) {
+            level++;
         }
     }
 
@@ -224,7 +222,7 @@ public class EnemyController : MonoBehaviour
         } 
         else if (other.CompareTag("Gum")) {
             PlaySound(2);
-            SpawnParticles(transform.position, gumParticles, 10);
+            SpawnParticles()
             currHealth -= gumDamage;
             speed = 0;  
             stunned = true;
