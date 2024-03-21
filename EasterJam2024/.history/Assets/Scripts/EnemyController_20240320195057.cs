@@ -59,8 +59,6 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerController = player.GetComponent<PlayerController>();
         // progressBar = GameObject.Find("ProgressBar").GetComponent<Slider>();
         maxHealth = 10;
         
@@ -97,7 +95,7 @@ public class EnemyController : MonoBehaviour
 
         if (currHealth <= 0)
         {
-            playerController.enemyDie(); 
+            player
             Destroy(gameObject);
             // IncrementProgressBar();
             spawner.spawnInterval -= 0.05f;

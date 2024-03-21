@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public void enemyDie() {
+    void enemyDie() {
         audioSource.clip = soundClips[0];
             Debug.Log("playsound");
             // Play the sound

@@ -97,7 +97,7 @@ public class EnemyController : MonoBehaviour
 
         if (currHealth <= 0)
         {
-            playerController.enemyDie(); 
+            playerController.Enemy true;
             Destroy(gameObject);
             // IncrementProgressBar();
             spawner.spawnInterval -= 0.05f;

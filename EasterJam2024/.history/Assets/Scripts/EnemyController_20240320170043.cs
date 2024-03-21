@@ -53,14 +53,11 @@ public class EnemyController : MonoBehaviour
     public static int threshold;
     public AudioClip[] soundClips; // Array to hold multiple sound clips
     private AudioSource audioSource;
-    private PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerController = player.GetComponent<PlayerController>();
         // progressBar = GameObject.Find("ProgressBar").GetComponent<Slider>();
         maxHealth = 10;
         
@@ -97,13 +94,13 @@ public class EnemyController : MonoBehaviour
 
         if (currHealth <= 0)
         {
-            playerController.enemyDie(); 
             Destroy(gameObject);
             // IncrementProgressBar();
             spawner.spawnInterval -= 0.05f;
             player.BroadcastMessage("IncrementScore", 5);
             xp++;
             origSpeed = 3.0f + level*0.05f;
+            // Clone the deathParticles and set its position to the enemy's position
             EmitDeathParticles();
         }
 

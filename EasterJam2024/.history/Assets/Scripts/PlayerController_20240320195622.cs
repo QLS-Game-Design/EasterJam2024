@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public AudioClip[] soundClips; 
     private AudioSource audioSource;
-
+    public bool playSound;
     
     
 
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
             flip();
             
         } 
-
+        
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0) {
             anim.SetBool("isRunning", false);
         } else if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 || Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1){
@@ -83,16 +83,11 @@ public class PlayerController : MonoBehaviour
         // Debug.Log("score is " + score.ToString());
         scoreText.text = score.ToString() + " POINTS";
 
-        
+        if (playSound) {
+            playSound = false;
+        }
     }
 
-    public void enemyDie() {
-        audioSource.clip = soundClips[0];
-            Debug.Log("playsound");
-            // Play the sound
-            audioSource.Play();
- 
-    }
     void die() {
         Destroy(Player);
         gameOverScreen.Setup((int)score);

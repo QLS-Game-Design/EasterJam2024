@@ -25,13 +25,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip[] soundClips; 
     private AudioSource audioSource;
 
-    
-    
-
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //anim = GetComponent<Animator>();
@@ -82,17 +78,8 @@ public class PlayerController : MonoBehaviour
         }
         // Debug.Log("score is " + score.ToString());
         scoreText.text = score.ToString() + " POINTS";
-
-        
     }
 
-    public void enemyDie() {
-        audioSource.clip = soundClips[0];
-            Debug.Log("playsound");
-            // Play the sound
-            audioSource.Play();
- 
-    }
     void die() {
         Destroy(Player);
         gameOverScreen.Setup((int)score);

@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public AudioClip[] soundClips; 
     private AudioSource audioSource;
-
+    public bool playSound;
     
     
 
@@ -86,12 +86,12 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public void enemyDie() {
+    void enemyDie() {
         audioSource.clip = soundClips[0];
             Debug.Log("playsound");
             // Play the sound
             audioSource.Play();
- 
+            playSound = false;
     }
     void die() {
         Destroy(Player);
