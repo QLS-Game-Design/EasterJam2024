@@ -26,8 +26,8 @@ public class PlayerController : MonoBehaviour
     private AudioSource audioSource;
 
     public bool isDead = false;
-    private float damageCooldown = 1.0f; 
-    private float nextDamageTime = 0.0f; 
+    public float damageCooldown = 1.0f; 
+    float nextDamageTime = 0.0f; 
     
 
     // Start is called before the first frame update
