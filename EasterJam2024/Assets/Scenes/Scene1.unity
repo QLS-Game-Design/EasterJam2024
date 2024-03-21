@@ -130,14 +130,13 @@ GameObject:
   - component: {fileID: 25667555}
   - component: {fileID: 25667558}
   - component: {fileID: 25667557}
-  - component: {fileID: 25667556}
   m_Layer: 5
   m_Name: Upgrades
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &25667555
 RectTransform:
   m_ObjectHideFlags: 0
@@ -145,7 +144,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25667554}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -153,26 +152,13 @@ RectTransform:
   - {fileID: 1784107254}
   - {fileID: 789175109}
   - {fileID: 828143930}
-  m_Father: {fileID: 1488562956}
+  m_Father: {fileID: 57924140}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 700, y: 252.20355}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &25667556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25667554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c1c5af9ece58e1428717c902eb4785f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 4508116557260365301}
 --- !u!114 &25667557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +197,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25667554}
   m_CullTransparentMesh: 1
+--- !u!1 &57924139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 57924140}
+  - component: {fileID: 57924141}
+  m_Layer: 5
+  m_Name: UpgradeController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &57924140
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57924139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 25667555}
+  m_Father: {fileID: 1488562956}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &57924141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57924139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c1c5af9ece58e1428717c902eb4785f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 4508116557260365301}
 --- !u!1001 &65195411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2489,7 +2525,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 25667556}
+      - m_Target: {fileID: 57924141}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: ArrowsUpgrade
         m_Mode: 1
@@ -2689,7 +2725,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 25667556}
+      - m_Target: {fileID: 57924141}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: HealthUpgrade
         m_Mode: 1
@@ -12480,7 +12516,7 @@ PrefabInstance:
       addedObject: {fileID: 725217531}
     - targetCorrespondingSourceObject: {fileID: 6220726020294252459, guid: 40560c70067a9204a8aa1d50e28d7883, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 25667555}
+      addedObject: {fileID: 57924140}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40560c70067a9204a8aa1d50e28d7883, type: 3}
 --- !u!224 &1488562956 stripped
@@ -13533,7 +13569,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 25667556}
+      - m_Target: {fileID: 57924141}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: DamageUpgrade
         m_Mode: 1

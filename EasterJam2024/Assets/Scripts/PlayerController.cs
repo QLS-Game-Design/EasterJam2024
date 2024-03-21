@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
         EnemyController.slowAmount = 1.0f;
         EnemyController.stunAmount = 1.0f;
 
-        EnemyController.level = 0;
         EnemyController.xp = 0;
         EnemyController.threshold = 2;
     }
