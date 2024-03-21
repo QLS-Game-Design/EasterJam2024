@@ -48,7 +48,6 @@ public class EnemyController : MonoBehaviour
     public static float slowAmount;
     public static float stunAmount;
 
-    public static int level;
     public static int xp;
     public static int threshold;
     public AudioClip[] soundClips; // Array to hold multiple sound clips
@@ -96,6 +95,7 @@ public class EnemyController : MonoBehaviour
             spawner.spawnInterval -= 0.05f;
             player.BroadcastMessage("IncrementScore", 5);
             xp++;
+            Debug.Log(xp);
             playerController.enemyDie(); 
             Destroy(gameObject);
             // IncrementProgressBar();
@@ -127,10 +127,6 @@ public class EnemyController : MonoBehaviour
         else if (path.desiredVelocity.x > 0 && !isFacingRight)
         {
             Flip();
-        }
-
-        if (xp >= threshold) {
-            level++;
         }
     }
 
