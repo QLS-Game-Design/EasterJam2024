@@ -8,8 +8,10 @@ using TMPro;
 public class GameOverScreen : MonoBehaviour
 {
     public TextMeshProUGUI pointsText;
+    public GameObject pointsGainedTop;
     public void Setup(int score) {
         gameObject.SetActive(true);
+        pointsGainedTop.SetActive(false);
         pointsText.text = score.ToString() + " POINTS";
     }
 
