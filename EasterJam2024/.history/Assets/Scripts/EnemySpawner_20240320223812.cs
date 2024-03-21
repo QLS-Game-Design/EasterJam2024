@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         children = GetComponentsInChildren<GameObject>();
-        spawnInterval = 15.0f;
+        spawnInterval = .0f;
     }
 
     // Update is called once per frame

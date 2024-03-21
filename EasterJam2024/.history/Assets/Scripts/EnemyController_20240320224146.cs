@@ -105,7 +105,7 @@ public class EnemyController : MonoBehaviour
             Debug.Log(xp);
             playerController.enemyDie(); 
 
-            }
+        }
             Destroy(gameObject);
             // IncrementProgressBar();
         }

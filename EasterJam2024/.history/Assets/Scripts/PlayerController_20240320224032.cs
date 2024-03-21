@@ -96,7 +96,6 @@ public class PlayerController : MonoBehaviour
  
     }
     void die() {
-        isDead = true;
         Destroy(Player);
         gameOverScreen.Setup((int)score);
     }

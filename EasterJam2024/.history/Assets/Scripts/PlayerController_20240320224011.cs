@@ -25,13 +25,12 @@ public class PlayerController : MonoBehaviour
     public AudioClip[] soundClips; 
     private AudioSource audioSource;
 
-    public bool isDead = false;
+    public bool isDead();
     
 
     // Start is called before the first frame update
     void Start()
     {
-        isDead = false;
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -96,7 +95,6 @@ public class PlayerController : MonoBehaviour
  
     }
     void die() {
-        isDead = true;
         Destroy(Player);
         gameOverScreen.Setup((int)score);
     }

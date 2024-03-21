@@ -96,7 +96,7 @@ public class EnemyController : MonoBehaviour
 
         if (currHealth <= 0)
         {
-            if (playerController.isDead) {
+            if (playerController.isDead){
             Vector3 position = transform.position;
             SpawnParticles(position, deathParticles, 10f);
             spawner.spawnInterval -= 0.05f;
@@ -105,7 +105,7 @@ public class EnemyController : MonoBehaviour
             Debug.Log(xp);
             playerController.enemyDie(); 
 
-            }
+        }
             Destroy(gameObject);
             // IncrementProgressBar();
         }
