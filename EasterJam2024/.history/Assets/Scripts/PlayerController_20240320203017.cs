@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void enemyDie() {
-            audioSource.clip = soundClips[0];
+        audioSource.clip = soundClips[0];
             Debug.Log("playsound");
             // Play the sound
             audioSource.Play();
@@ -110,8 +110,7 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Enemy")) {
             currHealth -= 3;
-            audioSource.clip = soundClips[1];
-            audioSource.Play();
+            
             Debug.Log("Attacked");
         }
     }

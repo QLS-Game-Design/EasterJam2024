@@ -101,7 +101,7 @@ public class EnemyController : MonoBehaviour
         if (currHealth <= 0)
         {
             Vector3 position = transform.position;
-            SpawnParticles(position, deathParticles, 10f);
+            SpawnParticles(position, deathParticles);
             playerController.enemyDie(); 
             Destroy(gameObject);
             // IncrementProgressBar();
@@ -185,7 +185,7 @@ public class EnemyController : MonoBehaviour
             ParticleSystem clonedParticles = Instantiate(particles, position, Quaternion.identity);
 
             // Emit particles
-            clonedParticles.Emit((int)amount);
+            clonedParticles.Emit(amount);
 
             // Get the duration of the ParticleSystem's main module
             float particleDuration = clonedParticles.main.duration;
@@ -253,7 +253,7 @@ public class EnemyController : MonoBehaviour
             currHealth -= popRockDamage;
             spawnPosition = other.transform.position; // Get the position of the trigger enter event\
             Debug.Log("1");
-            SpawnParticles(spawnPosition, rockParticles, 15f);
+            SpawnParticles(spawnPosition, rockParticles);
             Debug.Log("2");
             DoAreaDamage();
             Debug.Log("3");

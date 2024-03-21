@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using Pathfinding;
 using NUnit.Framework;
 using System.Xml;
-using UnityEngine.UIElements;
 
 public class EnemyController : MonoBehaviour
 {
@@ -100,8 +99,6 @@ public class EnemyController : MonoBehaviour
 
         if (currHealth <= 0)
         {
-            Vector3 position = transform.position;
-            SpawnParticles(position, deathParticles, 10f);
             playerController.enemyDie(); 
             Destroy(gameObject);
             // IncrementProgressBar();
@@ -109,7 +106,7 @@ public class EnemyController : MonoBehaviour
             player.BroadcastMessage("IncrementScore", 5);
             xp++;
             origSpeed = 3.0f + level*0.05f;
-            
+            EmitDeathParticles();
         }
 
         if (slowed || stunned) {
@@ -153,7 +150,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    
+    void EmitDeathParticles()
+    {
+        ParticleSystem clonedDeathParticles = Instantiate(deathParticles, transform.position, Quaternion.identity);
+        Destroy(clonedDeathParticles,1);
+    }
     // void UpdateProgressBar(float progress)
     // {
     //     if (progressBar != null)
@@ -179,13 +180,13 @@ public class EnemyController : MonoBehaviour
         GetComponent<SpriteRenderer>().flipX = !isFacingRight;
     }
 
-    void SpawnParticles(Vector3 position, ParticleSystem particles, float amount)
+    void SpawnParticles(Vector3 position, ParticleSystem particles)
         {
             // Set the position of the Particle System to the trigger enter position
-            ParticleSystem clonedParticles = Instantiate(particles, position, Quaternion.identity);
+            ParticleSystem clonedParticles = Instantiate(rockParticles, position, Quaternion.identity);
 
             // Emit particles
-            clonedParticles.Emit((int)amount);
+            clonedParticles.Emit(15);
 
             // Get the duration of the ParticleSystem's main module
             float particleDuration = clonedParticles.main.duration;
@@ -253,7 +254,7 @@ public class EnemyController : MonoBehaviour
             currHealth -= popRockDamage;
             spawnPosition = other.transform.position; // Get the position of the trigger enter event\
             Debug.Log("1");
-            SpawnParticles(spawnPosition, rockParticles, 15f);
+            SpawnParticles(spawnPosition);
             Debug.Log("2");
             DoAreaDamage();
             Debug.Log("3");

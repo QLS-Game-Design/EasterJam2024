@@ -111,7 +111,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy")) {
             currHealth -= 3;
             audioSource.clip = soundClips[1];
-            audioSource.Play();
             Debug.Log("Attacked");
         }
     }
