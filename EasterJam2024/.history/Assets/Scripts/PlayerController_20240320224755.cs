@@ -110,17 +110,23 @@ public class PlayerController : MonoBehaviour
     }
 
     
-    float damageCooldown = 1.0f; 
-    float nextDamageTime = 0.0f; 
     void OnCollisionStay2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("Enemy") && Time.time >= nextDamageTime) {
-            currHealth -= 3;
-            audioSource.clip = soundClips[1];
-            audioSource.Play();
-            Debug.Log("Attacked");
-            nextDamageTime = Time.time + damageCooldown;
-        }
+    if (collision.gameObject.CompareTag("Enemy")) {
+        // Apply damage to the player as long as they are in collision with the enemy
+        ApplyDamage();
     }
+}
+
+void ApplyDamage() {
+    // Apply damage at regular intervals while in collision with the enemy
+    currHealth -= 3;
+    audioSource.clip = soundClips[1];
+    audioSource.Play();
+    Debug.Log("Attacked");
+
+    // Schedule the next damage application after a short delay
+    Invoke("ApplyDamage", 1.0f); // Adjust the delay as needed
+}
     void IncrementScore(int amt) {
         score += amt;
     }

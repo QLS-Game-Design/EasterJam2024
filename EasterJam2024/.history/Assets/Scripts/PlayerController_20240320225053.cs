@@ -110,17 +110,50 @@ public class PlayerController : MonoBehaviour
     }
 
     
-    float damageCooldown = 1.0f; 
-    float nextDamageTime = 0.0f; 
     void OnCollisionStay2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("Enemy") && Time.time >= nextDamageTime) {
-            currHealth -= 3;
-            audioSource.clip = soundClips[1];
-            audioSource.Play();
-            Debug.Log("Attacked");
-            nextDamageTime = Time.time + damageCooldown;
+    if (collision.gameObject.CompareTag("Enemy")) {
+        // Apply damage to the player as long as they are in collision with the enemy
+        ApplyDamage();
+    }
+}
+
+bool isCollidingWithEnemy = false; // Flag to track if the player is currently colliding with an enemy
+float lastDamageTime = -Mathf.Infinity; // Time when the last damage was applied
+float damageCooldown = 1.0f; // Cooldown duration between consecutive damage applications
+
+void OnCollisionEnter2D(Collision2D collision) {
+    if (collision.gameObject.CompareTag("Enemy")) {
+        // Set isCollidingWithEnemy to true when player enters collision with enemy
+        isCollidingWithEnemy = true;
+        // Apply damage if enough time has passed since the last damage application
+        if (Time.time - lastDamageTime >= damageCooldown) {
+            ApplyDamage();
         }
     }
+}
+
+void OnCollisionExit2D(Collision2D collision) {
+    if (collision.gameObject.CompareTag("Enemy")) {
+        // Set isCollidingWithEnemy to false when player exits collision with enemy
+        isCollidingWithEnemy = false;
+    }
+}
+
+void ApplyDamage() {
+    // Apply damage to the player only if they are currently colliding with the enemy
+    if (isCollidingWithEnemy) {
+        currHealth -= 3;
+        audioSource.clip = soundClips[1];
+        audioSource.Play();
+        Debug.Log("Attacked");
+
+        // Update the last damage time to the current time
+        lastDamageTime = Time.time;
+
+        // Schedule the next damage application after a short delay
+        Invoke("ApplyDamage", damageCooldown); // Cooldown between consecutive damage applications
+    }
+}
     void IncrementScore(int amt) {
         score += amt;
     }

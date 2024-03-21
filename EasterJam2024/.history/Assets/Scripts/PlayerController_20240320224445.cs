@@ -110,17 +110,27 @@ public class PlayerController : MonoBehaviour
     }
 
     
-    float damageCooldown = 1.0f; 
-    float nextDamageTime = 0.0f; 
-    void OnCollisionStay2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("Enemy") && Time.time >= nextDamageTime) {
+    float attackCooldown = 2f; // Change this value to whatever cooldown time you desire
+float lastAttackTime = -Mathf.Infinity; // Set to a negative value to ensure first attack is allowed
+
+void OnCollisionEnter2D(Collision2D collision) {
+    if (collision.gameObject.CompareTag("Enemy")) {
+        // Check if enough time has passed since the last attack
+        if (Time.time - lastAttackTime >= attackCooldown) {
             currHealth -= 3;
             audioSource.clip = soundClips[1];
             audioSource.Play();
             Debug.Log("Attacked");
-            nextDamageTime = Time.time + damageCooldown;
+
+            // Update the last attack time to current time
+            lastAttackTime = Time.time;
+        } else {
+            // If the cooldown is still active, you can optionally provide feedback to the player
+            Debug.Log("Attack is on cooldown");
+            // Alternatively, you can skip this attack without any feedback.
         }
     }
+}   
     void IncrementScore(int amt) {
         score += amt;
     }

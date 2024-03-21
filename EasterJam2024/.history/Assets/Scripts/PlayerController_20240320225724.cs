@@ -111,13 +111,16 @@ public class PlayerController : MonoBehaviour
 
     
     float damageCooldown = 1.0f; 
-    float nextDamageTime = 0.0f; 
+    float nextDamageTime = 0.0f; // Time when the next damage can be dealt
+
     void OnCollisionStay2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Enemy") && Time.time >= nextDamageTime) {
             currHealth -= 3;
             audioSource.clip = soundClips[1];
             audioSource.Play();
             Debug.Log("Attacked");
+
+            // Set the next damage time after the cooldown period
             nextDamageTime = Time.time + damageCooldown;
         }
     }

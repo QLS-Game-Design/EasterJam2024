@@ -110,15 +110,12 @@ public class PlayerController : MonoBehaviour
     }
 
     
-    float damageCooldown = 1.0f; 
-    float nextDamageTime = 0.0f; 
     void OnCollisionStay2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("Enemy") && Time.time >= nextDamageTime) {
+        if (collision.gameObject.CompareTag("Enemy")) {
             currHealth -= 3;
             audioSource.clip = soundClips[1];
             audioSource.Play();
             Debug.Log("Attacked");
-            nextDamageTime = Time.time + damageCooldown;
         }
     }
     void IncrementScore(int amt) {
