@@ -93,14 +93,12 @@ public class EnemyController : MonoBehaviour
         {
             Vector3 position = transform.position;
             SpawnParticles(position, deathParticles, 10f);
-            playerController.enemyDie(); 
-            Destroy(gameObject);
-            // IncrementProgressBar();
             spawner.spawnInterval -= 0.05f;
             player.BroadcastMessage("IncrementScore", 5);
             xp++;
-            origSpeed = 3.0f + level*0.05f;
-            
+            playerController.enemyDie(); 
+            Destroy(gameObject);
+            // IncrementProgressBar();
         }
 
         if (slowed || stunned) {
@@ -120,12 +118,6 @@ public class EnemyController : MonoBehaviour
         if (speed < 0) {
             speed = 0;
         }
-
-        // Vector3 direction = (player.transform.position - transform.position).normalized;
-        // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        // // rigidbody2D.rotation = angle + 90;
-        // moveDirection = direction;
-        // rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * speed;
     
         // float movingDirection = rigidbody2D.velocity.x;
         if (path.desiredVelocity.x < 0f && isFacingRight)
