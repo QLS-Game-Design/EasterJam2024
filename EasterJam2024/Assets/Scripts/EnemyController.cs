@@ -55,6 +55,8 @@ public class EnemyController : MonoBehaviour
     private AudioSource audioSource;
     private PlayerController playerController;
 
+    public UpgradePanel upgradePanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -144,6 +146,7 @@ public class EnemyController : MonoBehaviour
         if (xp >= threshold) {
             level++;
             upgrade.Upgrade();
+            upgradePanel.ActivateMutationPanel();
         }
     }
 
