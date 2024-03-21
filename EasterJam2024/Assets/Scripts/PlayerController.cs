@@ -58,24 +58,26 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Debug.Log(Input.GetAxisRaw("Horizontal"));
-        playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        rb.velocity = playerInput.normalized * moveSpeed;
+        if (!Upgrades.stop) {
+            playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            rb.velocity = playerInput.normalized * moveSpeed;
 
-        inputHorizontal = Input.GetAxisRaw("Horizontal");
-        if (inputHorizontal > 0 && !facingRight) {
-            flip();
-            
-        } else if (inputHorizontal < 0 && facingRight) {
-            flip();
-            
-        } 
+            inputHorizontal = Input.GetAxisRaw("Horizontal");
+            if (inputHorizontal > 0 && !facingRight) {
+                flip();
+                
+            } else if (inputHorizontal < 0 && facingRight) {
+                flip();
+                
+            } 
 
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0) {
-            anim.SetBool("isRunning", false);
-        } else if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 || Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1){
-            anim.SetBool("isRunning", true);
+            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0) {
+                anim.SetBool("isRunning", false);
+            } else if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 || Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1){
+                anim.SetBool("isRunning", true);
+            }
         }
-
+        
         if (currHealth <= 0) {
             die();
         }
