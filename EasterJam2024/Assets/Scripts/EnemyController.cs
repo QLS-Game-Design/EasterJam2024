@@ -54,6 +54,8 @@ public class EnemyController : MonoBehaviour
     public AudioClip[] soundClips; // Array to hold multiple sound clips
     private AudioSource audioSource;
 
+    public UpgradePanel upgradePanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -140,6 +142,7 @@ public class EnemyController : MonoBehaviour
         if (xp >= threshold) {
             level++;
             upgrade.Upgrade();
+            upgradePanel.ActivateMutationPanel();
         }
     }
 
