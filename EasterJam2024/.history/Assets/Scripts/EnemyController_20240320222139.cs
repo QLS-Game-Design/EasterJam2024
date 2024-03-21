@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     public float currHealth;
     public float maxHealth;
     public float speed;
-    public static float origSpeed = 5.0f;
+    public static float origSpeed = 3.0f;
     public GameObject player;
     // Rigidbody2D rigidbody2D;
     Vector2 moveDirection;

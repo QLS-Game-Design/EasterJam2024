@@ -456,14 +456,13 @@ MonoBehaviour:
   progressIncrement: 1
   path: {fileID: 2665408329823704771}
   deathParticles: {fileID: 6633254454326632939, guid: 4bd93e97f7de644839341c5e78559f42, type: 3}
+  gumParticles: {fileID: 216061787121273822, guid: 657d49b50b8d24b429340a5421608350, type: 3}
   destinationSetter: {fileID: 6903767295682575629}
   spawner: {fileID: 2948536575589238361, guid: 0f5ef933933c36a42aecbcb4f5b03130, type: 3}
-  upgrade: {fileID: 3499044502500831893, guid: 32b2a68a197f2e84d8b8138ae510b794, type: 3}
   soundClips:
   - {fileID: 8300000, guid: 8432969d7f84d418a870ef8abcfdcb0b, type: 3}
   - {fileID: 8300000, guid: eb9e11f8a0fa24f5486662f559e59d18, type: 3}
   - {fileID: 8300000, guid: 39ce610bc5c2c45aca075a4ab18afd8c, type: 3}
-  upgradePanel: {fileID: 0}
 --- !u!95 &2269057855032401804
 Animator:
   serializedVersion: 7

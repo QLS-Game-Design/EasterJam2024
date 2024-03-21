@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     public float currHealth;
     public float maxHealth;
     public float speed;
-    public static float origSpeed = 5.0f;
+    public static float origSpeed = 3.0f;
     public GameObject player;
     // Rigidbody2D rigidbody2D;
     Vector2 moveDirection;
@@ -222,7 +222,9 @@ public class EnemyController : MonoBehaviour
         } 
         else if (other.CompareTag("Gum")) {
             PlaySound(2);
-            SpawnParticles(transform.position, gumParticles, 10);
+            SpawnParticles(private void OnTransformChildrenChanged() {
+                
+            })
             currHealth -= gumDamage;
             speed = 0;  
             stunned = true;
