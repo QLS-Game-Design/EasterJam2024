@@ -86,6 +86,12 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Upgrades.stop) {
+            speed = 0;
+        }
+        if (Upgrades.unstopped) {
+            speed = origSpeed;
+        }
         path.maxSpeed = speed;
 
         if (currHealth <= 0)

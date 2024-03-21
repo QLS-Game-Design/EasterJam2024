@@ -5,16 +5,21 @@ using UnityEngine;
 public class Upgrades : MonoBehaviour
 {
     public PlayerController player;
+    public static bool stop;
+    public static bool unstopped;
+    float time;
     // Start is called before the first frame update
     void Start()
     {
-        
+        stop = false;
+        unstopped = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (EnemyController.xp >= EnemyController.threshold) {
+            stop = true;
             EnemyController.xp = 0;
             EnemyController.threshold += 1;
             Transform thisChild = transform.GetChild(0);
@@ -23,6 +28,12 @@ public class Upgrades : MonoBehaviour
                 thisChild.GetChild(i).gameObject.SetActive(true);
                 thisChild.GetChild(i).GetChild(0).gameObject.SetActive(true);
             }
+        }
+        if (unstopped && time < 0.1f) {
+            time += Time.deltaTime;
+        } else if (unstopped && time >= 0.1f) {
+            unstopped = false;
+            time = 0;
         }
     }
 
@@ -54,6 +65,8 @@ public class Upgrades : MonoBehaviour
     }
 
     void Finish() {
+        stop = false;
+        unstopped = true;
         for (int i = 0; i < transform.childCount; i++) {
             transform.GetChild(i).gameObject.SetActive(false);
             transform.GetChild(i).GetChild(0).gameObject.SetActive(false);
