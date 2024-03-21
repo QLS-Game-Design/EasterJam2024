@@ -87,10 +87,10 @@ public class PlayerController : MonoBehaviour
     }
 
     public void enemyDie() {
-            audioSource.clip = soundClips[0];
-            Debug.Log("playsound");
-            // Play the sound
-            audioSource.Play();
+        audioSource.clip = soundClips[0];
+        Debug.Log("playsound");
+        // Play the sound
+        audioSource.Play();
  
     }
     void die() {

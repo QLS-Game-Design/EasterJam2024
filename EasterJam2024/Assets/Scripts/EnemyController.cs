@@ -37,7 +37,6 @@ public class EnemyController : MonoBehaviour
 
     public AIDestinationSetter destinationSetter;
     public EnemySpawner spawner;
-    public UpgradeOn upgrade;
 
     // damages
     public static float hardCandyDamage;
@@ -55,8 +54,6 @@ public class EnemyController : MonoBehaviour
     public AudioClip[] soundClips; // Array to hold multiple sound clips
     private AudioSource audioSource;
     private PlayerController playerController;
-
-    public UpgradePanel upgradePanel;
 
     // Start is called before the first frame update
     void Start()
@@ -91,12 +88,6 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         path.maxSpeed = speed;
-        if (UpgradeOn.stop) {
-            speed = 0;
-        }
-        if (UpgradeOn.unstop) {
-            speed = origSpeed;
-        }
 
         if (currHealth <= 0)
         {
@@ -148,8 +139,6 @@ public class EnemyController : MonoBehaviour
 
         if (xp >= threshold) {
             level++;
-            upgrade.Upgrade();
-            upgradePanel.ActivateMutationPanel();
         }
     }
 
